@@ -4,7 +4,9 @@ import React, {
   StyleSheet,
   View,
 } from 'react-native'
+import { BlurView } from 'react-native-blur'
 import Colors from '../../constants/Colors'
+import SharedStyle from '../../constants/SharedStyle'
 
 import Title from './Title'
 import Header from './Header'
@@ -17,22 +19,17 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 20,
     marginTop: 0,
-    shadowColor: 'black',
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 3 }
+    ...SharedStyle.cardShadow,
   },
   'Card--image': {
     height: 200,
     width: 335,
     borderRadius: 10,
-    padding: 15,
     margin: 20,
-    marginTop: 0,
-    shadowColor: 'black',
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 3 },
+    ...SharedStyle.cardShadow,
+  },
+  'Card-blur': {
+    padding: 15,
   },
 })
 
@@ -54,7 +51,9 @@ export default class Card extends Component {
           source={backgroundImage}
           resizeMode="cover"
         >
-          {this.props.children}
+          <BlurView blurType="dark" style={styles['Card-blur']}>
+            {this.props.children}
+          </BlurView>
         </Image>
       )
     }

@@ -9,6 +9,7 @@
     "@exponent/react-native-navigator": "^0.4.2",
     "lodash": "^4.6.1",
     "react-native": "^0.21.0",
+    "react-native-blur": "^0.7.10",
     "react-native-camera": "^0.3.8"
   }
 }
