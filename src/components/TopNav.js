@@ -6,12 +6,12 @@ import React, {
   TouchableOpacity,
 } from 'react-native'
 import Images from '../constants/Images'
-import TopNavLink from './TopNavLink'
 
 const styles = StyleSheet.create({
   'TopNav': {
     justifyContent: 'space-between',
     flexDirection: 'row',
+    marginBottom: 15,
   },
   'TopNav-left': {
     flexDirection: 'row',
@@ -27,7 +27,7 @@ const TopNav = ({
       {children}
     </View>
     <TouchableOpacity
-      onPress={() => null}
+      onPress={onPressSettings}
       style={styles['TopNav-right']}
     >
       <Image source={Images['TopNav-settings']} />
@@ -35,7 +35,8 @@ const TopNav = ({
   </View>
 )
 TopNav.propTypes = {
-
+  onPressSettings: React.PropTypes.func.isRequired,
+  children: React.PropTypes.node,
 }
 
 export default TopNav
