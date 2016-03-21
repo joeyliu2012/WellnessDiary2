@@ -1,3 +1,4 @@
+import Colors from './Colors'
 export default {
   textShadow: {
     textShadowColor: 'black',
@@ -9,5 +10,9 @@ export default {
     shadowOpacity: 0.3,
     shadowRadius: 5,
     shadowOffset: { width: 0, height: 3 },
+  },
+  page: {
+    paddingTop: 15,
+    backgroundColor: Colors.background,
   },
 }

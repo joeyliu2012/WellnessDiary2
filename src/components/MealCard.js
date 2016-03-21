@@ -8,6 +8,7 @@ import React, {
 import _ from 'lodash'
 import Images from '../constants/Images'
 import Card from '../components/Card'
+import CirclePlusIcon from '../components/CirclePlusIcon'
 
 const EmptyState = ({title}) => [
   <Image
@@ -25,12 +26,14 @@ const EmptyState = ({title}) => [
 const MealCard = ({
   title,
   meal,
+}, {
+  openModal,
 }) => (
-  <TouchableOpacity onPress={() => null}>
+  <TouchableOpacity onPress={() => openModal(title)}>
     <Card backgroundImage={_.get(meal, 'photo')} blurred={!!_.get(meal, 'photo')}>
       <Card.Header>
         <Card.Title blurred={!_.isEmpty(meal)}>{title}</Card.Title>
-        <Image source={Images['CirclePlus']} style={{ width: 20, height: 20 }}  />
+        <CirclePlusIcon />
       </Card.Header>
       <Card.Body empty={_.isEmpty(meal)}>
         {_.isEmpty(meal) && EmptyState({title})}
@@ -40,6 +43,9 @@ const MealCard = ({
 )
 MealCard.propTypes = {
   title: React.PropTypes.string,
+}
+MealCard.contextTypes = {
+  openModal: React.PropTypes.func,
 }
 
 export default MealCard

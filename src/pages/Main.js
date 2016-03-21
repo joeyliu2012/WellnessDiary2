@@ -6,7 +6,7 @@ import React, {
   Image,
 } from 'react-native'
 import _ from 'lodash/fp'
-import Colors from '../constants/Colors'
+import SharedStyle from '../constants/SharedStyle'
 import Images from '../constants/Images'
 import PagesMap from '../constants/PagesMap'
 
@@ -19,11 +19,7 @@ import Card from '../components/Card'
 const styles = StyleSheet.create({
   'Main': {
     flex: 1,
-    paddingTop: 15,
-    backgroundColor: Colors.background,
-  },
-  'Main-scroll': {
-
+    ...SharedStyle.page,
   },
 })
 
