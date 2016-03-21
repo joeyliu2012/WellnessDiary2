@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   'TopNav': {
     justifyContent: 'space-between',
     flexDirection: 'row',
+    margin: 20,
     marginBottom: 15,
   },
   'TopNav-left': {

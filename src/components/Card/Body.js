@@ -7,9 +7,12 @@ import { isEmpty } from 'lodash'
 
 const styles = StyleSheet.create({
   'Card.Body': {
+    height: 150,
   },
   'Card.Body--empty': {
     height: 65,
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 5,
     borderColor: 'grey',
     borderWidth: 2,
@@ -17,11 +20,11 @@ const styles = StyleSheet.create({
   },
 })
 
-const Body = ({children}) => (
+const Body = ({children, empty}) => (
   <View
     style={[
       styles['Card.Body'],
-      isEmpty(children) && styles['Card.Body--empty'],
+      (empty || isEmpty(children)) && styles['Card.Body--empty'],
     ]}
   >
     {children}
@@ -29,6 +32,7 @@ const Body = ({children}) => (
 )
 Body.propTypes = {
   children: React.PropTypes.node,
+  empty: React.PropTypes.bool,
 }
 
 export default Body

@@ -10,15 +10,18 @@ import Images from '../constants/Images'
 
 import TopNav from '../components/TopNav'
 import TopNavLink from '../components/TopNavLink'
+import MealCard from '../components/MealCard'
 import Card from '../components/Card'
 
 
 const styles = StyleSheet.create({
   'Main': {
     flex: 1,
-    padding: 20,
-    paddingTop: 30,
+    paddingTop: 15,
     backgroundColor: Colors.background,
+  },
+  'Main-scroll': {
+
   },
 })
 
@@ -32,39 +35,10 @@ export default class Main extends Component {
           <TopNavLink onPress={() => null}>History</TopNavLink>
         </TopNav>
         <ScrollView>
-          <Card>
-            <Card.Header>
-              <Card.Title>Breakfast</Card.Title>
-              <Image source={Images['MealCard-add-icon']} style={{ width: 20, height: 20 }}  />
-            </Card.Header>
-            <Card.Body>
-              
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Header>
-              <Card.Title>Lunch</Card.Title>
-            </Card.Header>
-            <Card.Body>
-
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Header>
-              <Card.Title>Dinner</Card.Title>
-            </Card.Header>
-            <Card.Body>
-
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Header>
-              <Card.Title>Snacks</Card.Title>
-            </Card.Header>
-            <Card.Body>
-
-            </Card.Body>
-          </Card>
+          <MealCard title="Breakfast"/>
+          <MealCard title="Lunch"/>
+          <MealCard title="Dinner"/>
+          <MealCard title="Snacks"/>
         </ScrollView>
       </View>
     )
