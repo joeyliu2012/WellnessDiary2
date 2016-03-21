@@ -2,24 +2,38 @@ import React, {
   Component,
   ScrollView,
 } from 'react-native'
-import Images from '../constants/Images'
+import { Map } from 'immutable'
+import { connect } from 'react-redux'
 import MealCard from './MealCard'
 
+const mapStateToProps = (date) => (state) => ({
+  meals: state.get('meals').get(date) || new Map({
+    'Breakfast': null,
+    'Lunch': null,
+    'Dinner': null,
+    'Snacks': null,
+  })
+})
+
 const DayViewFactory = (date) => (
-  class DayView extends Component {
+    connect(
+      mapStateToProps(date),
+      null,
+      null,
+      { pure: true }
+    )(class DayView extends Component {
     render() {
+      const { meals } = this.props
       return (
         <ScrollView>
-          <MealCard title="Breakfast" meal={{
-            photo: Images['Fixture-meal-image'],
-          }}/>
-          <MealCard title="Lunch"/>
-          <MealCard title="Dinner"/>
-          <MealCard title="Snacks"/>
+          {meals
+            .entrySeq()
+            .map(([key, value]) => <MealCard key={key} title={key} />)
+          }
         </ScrollView>
       )
     }
-  }
+  })
 )
 
 export default DayViewFactory
