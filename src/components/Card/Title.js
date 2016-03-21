@@ -4,12 +4,15 @@ import React, {
   Component,
 } from 'react-native'
 import Colors from '../../constants/Colors'
+import SharedStyle from '../../constants/SharedStyle'
 
 const styles = StyleSheet.create({
   'Card.Title': {
     color: Colors.text,
+    backgroundColor: 'transparent',
     fontWeight: '700',
     fontSize: 18,
+    ...SharedStyle.textShadow,
   },
 })
 

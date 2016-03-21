@@ -25,7 +25,7 @@ const Body = ({children, empty}) => (
   <View
     style={[
       styles['Card.Body'],
-      (empty || isEmpty(children)) && styles['Card.Body--empty'],
+      empty && styles['Card.Body--empty'],
     ]}
   >
     {children}

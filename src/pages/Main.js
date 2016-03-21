@@ -35,7 +35,9 @@ export default class Main extends Component {
           <TopNavLink onPress={() => null}>History</TopNavLink>
         </TopNav>
         <ScrollView>
-          <MealCard title="Breakfast"/>
+          <MealCard title="Breakfast" meal={{
+            photo: Images['Fixture-meal-image'],
+          }}/>
           <MealCard title="Lunch"/>
           <MealCard title="Dinner"/>
           <MealCard title="Snacks"/>
