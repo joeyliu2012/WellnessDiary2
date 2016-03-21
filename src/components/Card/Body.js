@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     height: 150,
   },
   'Card.Body--empty': {
+    flexDirection: 'row',
     height: 65,
     justifyContent: 'center',
     alignItems: 'center',

@@ -18,7 +18,8 @@ const MealCard = ({
         <Image source={Images['CirclePlus']} style={{ width: 20, height: 20 }}  />
       </Card.Header>
       <Card.Body empty>
-        <Text style={{color:'grey'}}>No food logged for {title.toLowerCase()}</Text>
+        <Image style={{ width: 20, height: 20}} source={Images['CirclePlus']} />
+        <Text style={{color:'grey', padding: 8 }}>No food logged for {title.toLowerCase()}</Text>
       </Card.Body>
     </Card>
   </TouchableOpacity>
