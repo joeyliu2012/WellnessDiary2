@@ -59,7 +59,7 @@ export default class Card extends Component {
             ? <BlurView blurType="dark" style={styles['Card-blur']}>
                 {this.props.children}
               </BlurView>
-            : <View style={styles['Card-blur']>{this.props.children}</View>
+            : <View style={styles['Card-blur']}>{this.props.children}</View>
           }
         </Image>
       )
