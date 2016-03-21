@@ -3,8 +3,10 @@ import React, {
   StyleSheet,
   ScrollView,
   View,
+  Image,
 } from 'react-native'
 import Colors from '../constants/Colors'
+import Images from '../constants/Images'
 
 import TopNav from '../components/TopNav'
 import TopNavLink from '../components/TopNavLink'
@@ -33,6 +35,7 @@ export default class Main extends Component {
           <Card>
             <Card.Header>
               <Card.Title>Breakfast</Card.Title>
+              <Image source={Images['MealCard-add-icon']} style={{ width: 20, height: 20 }}  />
             </Card.Header>
             <Card.Body>
               
