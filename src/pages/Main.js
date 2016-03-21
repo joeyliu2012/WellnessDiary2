@@ -5,8 +5,10 @@ import React, {
   View,
   Image,
 } from 'react-native'
+import _ from 'lodash/fp'
 import Colors from '../constants/Colors'
 import Images from '../constants/Images'
+import PagesMap from '../constants/PagesMap'
 
 import TopNav from '../components/TopNav'
 import TopNavLink from '../components/TopNavLink'
@@ -26,22 +28,42 @@ const styles = StyleSheet.create({
 })
 
 export default class Main extends Component {
+  constructor(props, context) {
+    super(props, context)
+    this.state = {
+      currentPage: _.head(_.keys(PagesMap)),
+    }
+    this.handleTopNavLinkPress = this.handleTopNavLinkPress.bind(this)
+    this.renderTopNavLink = this.renderTopNavLink.bind(this)
+    this.renderTopNavLinks = _.map(this.renderTopNavLink) // is this too tricky?
+  }
+
+  handleTopNavLinkPress(toPage) {
+    return () => {
+      this.setState({ currentPage: toPage })
+    }
+  }
+
+  renderTopNavLink(page, idx) {
+    return (
+      <TopNavLink
+        key={`${page}-${idx}`}
+        onPress={this.handleTopNavLinkPress(page)}
+        active={page === this.state.currentPage}
+      >
+        {page}
+      </TopNavLink>
+    )
+  }
+
   render() {
+    const { currentPage } = this.state
     return (
       <View style={styles['Main']}>
-        <TopNav onPressSettings={() => null}> 
-          <TopNavLink onPress={() => null} active>Today</TopNavLink>
-          <TopNavLink onPress={() => null}>Yesterday</TopNavLink>
-          <TopNavLink onPress={() => null}>History</TopNavLink>
+        <TopNav onPressSettings={this.handleTopNavLinkPress('Settings')}> 
+          {this.renderTopNavLinks(_.slice(0, 3, _.keys(PagesMap)))}
         </TopNav>
-        <ScrollView>
-          <MealCard title="Breakfast" meal={{
-            photo: Images['Fixture-meal-image'],
-          }}/>
-          <MealCard title="Lunch"/>
-          <MealCard title="Dinner"/>
-          <MealCard title="Snacks"/>
-        </ScrollView>
+        {PagesMap[currentPage]()}
       </View>
     )
   }

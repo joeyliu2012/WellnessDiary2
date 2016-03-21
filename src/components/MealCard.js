@@ -29,7 +29,7 @@ const MealCard = ({
   <TouchableOpacity onPress={() => null}>
     <Card backgroundImage={_.get(meal, 'photo')}>
       <Card.Header>
-        <Card.Title>{title}</Card.Title>
+        <Card.Title blurred={!_.isEmpty(meal)}>{title}</Card.Title>
         <Image source={Images['CirclePlus']} style={{ width: 20, height: 20 }}  />
       </Card.Header>
       <Card.Body empty={_.isEmpty(meal)}>
