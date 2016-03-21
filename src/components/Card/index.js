@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
 export default class Card extends Component {
   static propTypes = {
     children: React.PropTypes.node,
+    blurred: React.PropTypes.bool,
   };
 
   static Title = Title;
@@ -43,7 +44,10 @@ export default class Card extends Component {
   static Body = Body;
 
   render() {
-    const { backgroundImage } = this.props
+    const {
+      backgroundImage,
+      blurred,
+    } = this.props
     if (backgroundImage) {
       return (
         <Image
@@ -51,9 +55,12 @@ export default class Card extends Component {
           source={backgroundImage}
           resizeMode="cover"
         >
-          <BlurView blurType="dark" style={styles['Card-blur']}>
-            {this.props.children}
-          </BlurView>
+          {blurred
+            ? <BlurView blurType="dark" style={styles['Card-blur']}>
+                {this.props.children}
+              </BlurView>
+            : <View style={styles['Card-blur']>{this.props.children}</View>
+          }
         </Image>
       )
     }
