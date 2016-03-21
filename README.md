@@ -1,7 +1,7 @@
 # Up and running
 
 ```bash
-nvm use
+nvm install
 npm install -g rnpm
 npm install
 rnpm link
