@@ -12,6 +12,7 @@ import SharedStyle from '../constants/SharedStyle'
 
 import CloseButton from '../components/CloseButton'
 import Card from '../components/Card'
+import CirclePlusIcon from '../components/CirclePlusIcon'
 
 const styles = StyleSheet.create({
   'Modal': {
@@ -23,11 +24,12 @@ const styles = StyleSheet.create({
   'Modal-header': {
     margin: 20,
     marginBottom: 15,
-  }
+  },
 })
 
 export default class Modal extends Component {
   static propTypes = {
+    mealType: React.PropTypes.string.isRequired,
     closeModal: React.PropTypes.func.isRequired,
   };
 
@@ -43,17 +45,20 @@ export default class Modal extends Component {
         <ScrollView>
           <Card>
             <Card.Body empty>
-              <Text style={{color: 'grey'}}>Add a photo</Text>
+              <CirclePlusIcon />
+              <Text style={{color: 'grey', padding: 8 }}>Add a photo</Text>
             </Card.Body>
           </Card>
           <Card>
             <Card.Body empty>
-              <Text style={{color: 'grey'}}>Add nutrition information</Text>
+              <CirclePlusIcon />
+              <Text style={{color: 'grey', padding: 8 }}>Add nutrition information</Text>
             </Card.Body>
           </Card>
           <Card>
             <Card.Body empty>
-              <Text style={{color: 'grey'}}>Add location</Text>
+              <CirclePlusIcon />
+              <Text style={{color: 'grey', padding: 8 }}>Add location</Text>
             </Card.Body>
           </Card>
         </ScrollView>

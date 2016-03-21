@@ -3,6 +3,7 @@ import React, {
   StyleSheet,
   View,
 } from 'react-native'
+import _ from 'lodash/fp'
 
 import Main from './Main'
 import Modal from './Modal'
@@ -21,7 +22,7 @@ export default class Index extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      modalOpen: true,
+      modalOpen: false,
       mealType: null,
     }
 
@@ -36,6 +37,7 @@ export default class Index extends Component {
   }
 
   handleOpenModal(mealType) {
+    if (_.isEmpty(mealType)) return console.warn('You called openModal with an empty meal type. That\'s not allowed')
     this.setState({ modalOpen: true, mealType })
   }
 
