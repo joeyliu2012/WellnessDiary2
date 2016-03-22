@@ -3,6 +3,7 @@ export default {
   'TopNav-settings': require('../images/icons/Settings.png'),
   'CirclePlus': require('../images/icons/CirclePlus.png'),
   'CloseIcon': require('../images/icons/CloseIcon.png'),
+  'CheckIcon': require('../images/icons/Check.png'),
 
   'Fixture-meal-image': require('../images/fixtures/meal.jpg'),
 }

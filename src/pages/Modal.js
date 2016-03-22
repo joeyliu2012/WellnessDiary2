@@ -12,6 +12,7 @@ import moment from 'moment'
 import SharedStyle from '../constants/SharedStyle'
 
 import CloseButton from '../components/CloseButton'
+import CheckButton from '../components/CheckButton'
 import Card from '../components/Card'
 import CirclePlusIcon from '../components/CirclePlusIcon'
 
@@ -27,6 +28,8 @@ const styles = StyleSheet.create({
   'Modal-header': {
     margin: 20,
     marginBottom: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 })
 
@@ -48,6 +51,7 @@ export default class Modal extends Component {
       ]}>
         <View style={styles['Modal-header']}>
           <CloseButton onPress={this.props.closeModal} />
+          <CheckButton onPress={this.props.closeModal} />
         </View>
         <ScrollView>
           <AddPhotoCard />
