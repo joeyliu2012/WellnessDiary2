@@ -15,6 +15,8 @@ import CloseButton from '../components/CloseButton'
 import Card from '../components/Card'
 import CirclePlusIcon from '../components/CirclePlusIcon'
 
+import AddPhotoCard from '../components/AddPhotoCard'
+
 const styles = StyleSheet.create({
   'Modal': {
     position: 'absolute',
@@ -48,12 +50,7 @@ export default class Modal extends Component {
           <CloseButton onPress={this.props.closeModal} />
         </View>
         <ScrollView>
-          <Card backgroundImage={_.get('meal.photo', this.props)}>
-            <Card.Body empty>
-              <CirclePlusIcon />
-              <Text style={{color: 'grey', padding: 8 }}>Add a photo</Text>
-            </Card.Body>
-          </Card>
+          <AddPhotoCard />
           <Card>
             <Card.Body empty>
               <CirclePlusIcon />
