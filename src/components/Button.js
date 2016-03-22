@@ -8,7 +8,7 @@ import React, {
 
 const styles = StyleSheet.create({
   'Button': {
-    padding: 4,
+    padding: 8,
     borderColor: 'white',
     borderWidth: 1,
     borderStyle: 'solid',
@@ -16,6 +16,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   'Button-text': {
+    fontSize: 16,
+    fontWeight: '400',
     color: 'white',
   },
 })

@@ -14,13 +14,13 @@ import Button from './Button'
 
 const styles = StyleSheet.create({
   'Thumbnail': {
-    height: 75,
-    width: 75,
+    height: 100,
+    width: 100,
     margin: 5,
   },
   'Thumbnails': {
-    height: 85,
-    // flexDirection: 'row',
+    height: 110,
+    marginBottom: 5,
   }
 })
 
