@@ -7,7 +7,7 @@ import { isEmpty } from 'lodash'
 
 const styles = StyleSheet.create({
   'Card.Body': {
-    height: 150,
+    // height: 150,
   },
   'Card.Body--empty': {
     flexDirection: 'row',

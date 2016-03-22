@@ -10,6 +10,7 @@ import React, {
 } from 'react-native'
 import _ from 'lodash/fp'
 import Card from './Card'
+import Button from './Button'
 
 const styles = StyleSheet.create({
   'Thumbnail': {
@@ -23,17 +24,6 @@ const styles = StyleSheet.create({
   }
 })
 
-const Thumbnail = ({photo}) => (
-  <Image
-    style={styles['Thumbnail']}
-    source={photo}
-    resizeMode="cover"
-  />
-)
-Thumbnail.propTypes = {
-
-}
-
 export default class AddPhotoCard extends Component {
   static propTypes = {
 
@@ -42,19 +32,34 @@ export default class AddPhotoCard extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
+      selectedPhoto: null,
       photos: [],
       loading: true,
     }
   }
 
   componentDidMount() {
-    CameraRoll.getPhotos({ first: 4 })
+    CameraRoll.getPhotos({ first: 20 })
       .then((results) => {
         this.setState({
           loading: false,
           photos: _.map('node.image', results.edges),
         })
       })
+  }
+
+  handleTakePhotoPress() {
+
+  }
+
+  renderThumbnail(photo) {
+    return (
+      <Image
+        key={photo.uri}
+        style={styles['Thumbnail']}
+        source={photo}
+      />
+    )
   }
 
   render() {
@@ -64,14 +69,15 @@ export default class AddPhotoCard extends Component {
         <Card.Body empty={loading}>
           {loading
             ? <ActivityIndicatorIOS />
-            : <ScrollView horizontal style={styles['Thumbnails']}>
-                {_.map((photo) =>
-                  <Thumbnail key={photo.uri} photo={photo} />, photos)}
-              </ScrollView>
+            : <View>
+                <ScrollView horizontal style={styles['Thumbnails']}>
+                 {_.map(this.renderThumbnail, photos)}
+                </ScrollView>
+                <Button onPress={this.handleTakePhotoPress}>
+                  Take Photo
+                </Button>
+              </View>
           }
-          <View>
-            <Text>Take Photo</Text>
-          </View>
         </Card.Body>
       </Card>
     )
