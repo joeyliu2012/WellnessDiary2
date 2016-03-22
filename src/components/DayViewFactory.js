@@ -6,13 +6,15 @@ import { Map } from 'immutable'
 import { connect } from 'react-redux'
 import MealCard from './MealCard'
 
+import Images from '../constants/Images'
+
 const mapStateToProps = (date) => (state) => ({
-  meals: state.get('meals').get(date) || new Map({
+  meals: state.get('meals').get(date, new Map({
     'Breakfast': null,
     'Lunch': null,
     'Dinner': null,
     'Snacks': null,
-  })
+  }))
 })
 
 const DayViewFactory = (date) => (
@@ -28,7 +30,14 @@ const DayViewFactory = (date) => (
         <ScrollView>
           {meals
             .entrySeq()
-            .map(([key, value]) => <MealCard key={key} title={key} />)
+            .map(([type, meal]) =>
+                 <MealCard
+                   key={type}
+                   meal={_.isEmpty(meal)
+                     ? { date, type }
+                     : meal
+                   }
+                 />)
           }
         </ScrollView>
       )

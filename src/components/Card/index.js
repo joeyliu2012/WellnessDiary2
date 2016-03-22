@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     width: 335,
     borderRadius: 10,
     margin: 20,
+    marginTop: 0,
     ...SharedStyle.cardShadow,
   },
   'Card-blur': {

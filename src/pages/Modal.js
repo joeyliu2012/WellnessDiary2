@@ -7,6 +7,7 @@ import React, {
   Dimensions,
 } from 'react-native'
 import _ from 'lodash/fp'
+import moment from 'moment'
 
 import SharedStyle from '../constants/SharedStyle'
 
@@ -29,7 +30,11 @@ const styles = StyleSheet.create({
 
 export default class Modal extends Component {
   static propTypes = {
-    mealType: React.PropTypes.string.isRequired,
+    meal: React.PropTypes.shape({
+      type: React.PropTypes.string.isRequired,
+      date: React.PropTypes.instanceOf(moment).isRequired,
+    }).isRequired,
+
     closeModal: React.PropTypes.func.isRequired,
   };
 
@@ -43,7 +48,7 @@ export default class Modal extends Component {
           <CloseButton onPress={this.props.closeModal} />
         </View>
         <ScrollView>
-          <Card>
+          <Card backgroundImage={_.get('meal.photo', this.props)}>
             <Card.Body empty>
               <CirclePlusIcon />
               <Text style={{color: 'grey', padding: 8 }}>Add a photo</Text>
