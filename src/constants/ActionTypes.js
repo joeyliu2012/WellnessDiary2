@@ -1,1 +1,1 @@
-export const ADD_MEAL = Symbol('ActionTypes.ADD_MEAL')
+export const SAVE_MEAL = Symbol('ActionTypes.SAVE_MEAL')

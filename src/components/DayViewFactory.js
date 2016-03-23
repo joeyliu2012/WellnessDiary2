@@ -8,13 +8,10 @@ import MealCard from './MealCard'
 
 import Images from '../constants/Images'
 
+const MEAL_TYPES = ['Breakfast', 'Lunch', 'Dinner', 'Snacks']
+
 const mapStateToProps = (date) => (state) => ({
-  meals: state.get('meals').get(date, new Map({
-    'Breakfast': null,
-    'Lunch': null,
-    'Dinner': null,
-    'Snacks': null,
-  }))
+  meals: state.get('meals').get(date, new Map())
 })
 
 const DayViewFactory = (date) => (
@@ -28,17 +25,8 @@ const DayViewFactory = (date) => (
       const { meals } = this.props
       return (
         <ScrollView>
-          {meals
-            .entrySeq()
-            .map(([type, meal]) =>
-                 <MealCard
-                   key={type}
-                   meal={_.isEmpty(meal)
-                     ? { date, type }
-                     : meal
-                   }
-                 />)
-          }
+          {MEAL_TYPES.map((type) => meals.get(type, { date, type }))
+            .map((meal) => <MealCard key={meal.type} meal={meal} />)}
         </ScrollView>
       )
     }
@@ -47,3 +35,13 @@ const DayViewFactory = (date) => (
 
 export default DayViewFactory
 
+          // {meals
+          //   .entrySeq()
+          //   .map(([type, meal]) =>
+          //        <MealCard
+          //          key={type}
+          //          meal={_.isEmpty(meal)
+          //            ? { date, type }
+          //            : meal
+          //          }
+          //        />)

@@ -6,6 +6,8 @@ import React, {
   ScrollView,
   Dimensions,
 } from 'react-native'
+import { connect } from 'react-redux'
+import { saveMeal } from '../actions/meals'
 import _ from 'lodash/fp'
 import moment from 'moment'
 
@@ -33,7 +35,15 @@ const styles = StyleSheet.create({
   },
 })
 
-export default class Modal extends Component {
+const mapStateToProps = null
+const mapDispatchToProps = {
+  saveMeal,
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(class Modal extends Component {
   static propTypes = {
     meal: React.PropTypes.shape({
       type: React.PropTypes.string.isRequired,
@@ -43,6 +53,28 @@ export default class Modal extends Component {
     closeModal: React.PropTypes.func.isRequired,
   };
 
+  constructor(props, context) {
+    super(props, context)
+    this.state = {
+      photo: null,
+    }
+
+    this.handleSelectPhoto = this.handleSelectPhoto.bind(this)
+    this.handleSaveMeal = this.handleSaveMeal.bind(this)
+  }
+
+  handleSelectPhoto(photo) {
+    this.setState({photo})
+  }
+
+  handleSaveMeal() {
+    this.props.saveMeal({
+      ...this.props.meal,
+      ...this.state,
+    })
+    this.props.closeModal()
+  }
+
   render() {
     return (
       <View style={[
@@ -51,10 +83,10 @@ export default class Modal extends Component {
       ]}>
         <View style={styles['Modal-header']}>
           <CloseButton onPress={this.props.closeModal} />
-          <CheckButton onPress={this.props.closeModal} />
+          <CheckButton onPress={this.handleSaveMeal} />
         </View>
         <ScrollView>
-          <AddPhotoCard />
+          <AddPhotoCard onSelectPhoto={this.handleSelectPhoto} />
           <Card>
             <Card.Body empty>
               <CirclePlusIcon />
@@ -71,4 +103,4 @@ export default class Modal extends Component {
       </View>
     )
   }
-}
+})

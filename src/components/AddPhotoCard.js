@@ -7,6 +7,7 @@ import React, {
   ScrollView,
   View,
   Text,
+  TouchableOpacity,
 } from 'react-native'
 import _ from 'lodash/fp'
 import Card from './Card'
@@ -18,6 +19,11 @@ const styles = StyleSheet.create({
     width: 100,
     margin: 5,
   },
+  'Thumbnail--selected': {
+    borderColor: 'white',
+    borderWidth: 4,
+    borderRadius: 2,
+  },
   'Thumbnails': {
     height: 110,
     marginBottom: 5,
@@ -26,7 +32,7 @@ const styles = StyleSheet.create({
 
 export default class AddPhotoCard extends Component {
   static propTypes = {
-
+    onSelectPhoto: React.PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
@@ -36,6 +42,8 @@ export default class AddPhotoCard extends Component {
       photos: [],
       loading: true,
     }
+
+    this.renderThumbnail = this.renderThumbnail.bind(this)
   }
 
   componentDidMount() {
@@ -52,13 +60,23 @@ export default class AddPhotoCard extends Component {
 
   }
 
+  handleSelectPhoto(photo) {
+    this.setState({
+      selectedPhoto: photo.uri,
+    }, this.props.onSelectPhoto(photo))
+  }
+
   renderThumbnail(photo) {
     return (
-      <Image
-        key={photo.uri}
-        style={styles['Thumbnail']}
-        source={photo}
-      />
+      <TouchableOpacity key={photo.uri} onPress={() => this.handleSelectPhoto(photo)}>
+        <Image
+          style={[
+            styles['Thumbnail'],
+            photo.uri === this.state.selectedPhoto && styles['Thumbnail--selected'],
+          ]}
+          source={photo}
+        />
+      </TouchableOpacity>
     )
   }
 
@@ -83,10 +101,3 @@ export default class AddPhotoCard extends Component {
     )
   }
 }
-
-// <Card backgroundImage={_.get('meal.photo', this.props)}>
-//   <Card.Body empty>
-//     <CirclePlusIcon />
-//     <Text style={{color: 'grey', padding: 8 }}>Add a photo</Text>
-//   </Card.Body>
-// </Card>

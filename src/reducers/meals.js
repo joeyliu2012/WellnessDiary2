@@ -1,5 +1,5 @@
 import {
-  ADD_MEAL,
+  SAVE_MEAL,
 } from '../constants/ActionTypes'
 import { Map } from 'immutable'
 
@@ -28,8 +28,16 @@ import { Map } from 'immutable'
 
 const meals = (state = new Map(), action) => {
   switch (action.type) {
-  case ADD_MEAL:
-    return state.merge(action.payload)
+  case SAVE_MEAL:
+    return state.mergeDeep(
+      new Map().set(
+        action.payload.date,
+        new Map().set(
+          action.payload.type,
+          action.payload
+        )
+      )
+    )
   default:
     return state
   }

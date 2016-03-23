@@ -5,6 +5,7 @@ import React, {
   TouchableOpacity,
   Text,
 } from 'react-native'
+import SharedStyle from '../constants/SharedStyle'
 
 const styles = StyleSheet.create({
   'Button': {
@@ -19,6 +20,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     color: 'white',
+    ...SharedStyle.textShadow,
   },
 })
 

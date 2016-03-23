@@ -1,7 +1,7 @@
-import { ADD_MEAL } from '../constants/ActionTypes'
+import { SAVE_MEAL } from '../constants/ActionTypes'
 
-export const addMeal = (type, date, photo=null, nutrition={}, location={}) => ({
-  type: ADD_MEAL,
+export const saveMeal = ({type, date, photo=null, nutrition={}, location={}}) => ({
+  type: SAVE_MEAL,
   payload: {
     type,
     date,
