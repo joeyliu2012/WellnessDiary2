@@ -12,6 +12,7 @@ const mapStateToProps = (date) => (state) => ({
   meals: state.meals[date],
 })
 
+
 const DayViewFactory = (date) => (
   connect(
     mapStateToProps(date)

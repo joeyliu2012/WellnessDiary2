@@ -4,6 +4,7 @@ import React, {
   Text,
   StyleSheet,
   TouchableOpacity,
+  View,
 } from 'react-native'
 import _ from 'lodash/fp'
 import moment from 'moment'
@@ -11,6 +12,43 @@ import Images from '../constants/Images'
 import Card from '../components/Card'
 import CirclePlusIcon from '../components/CirclePlusIcon'
 
+import RNChart from 'react-native-chart'
+import Colors from '../constants/Colors'
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  chart: {
+		width: 240,
+		height: 140,
+		alignSelf: 'center'
+  }
+})
+
+function generateChartData(nutritionData) {
+  const carbs = parseInt(_.get('carbs', nutritionData), 10)
+  const fats = parseInt(_.get('fats', nutritionData), 10)
+  const fiber = parseInt(_.get('fiber', nutritionData), 10)
+  const calories = parseInt(_.get('calories', nutritionData), 10)
+
+  return ([
+    {
+      name: 'BarChart',
+      type: 'pie',
+      data: [isNaN(carbs) ? 0 : carbs,
+             isNaN(fats) ? 0 : fats,
+             isNaN(fiber) ? 0 : fiber,
+             isNaN(calories) ? 0 : calories],
+      sliceColors: [Colors['pink'], Colors['oceanBlue'], Colors['skyBlue'], Colors['oceanGreen']]
+    }
+  ])
+}
+
+const xLabels = ['0','1','2','3']
 
 const Body = ({meal}) => {
   const { photo, nutrition } = meal
@@ -45,6 +83,13 @@ const MealCard = ({
         <CirclePlusIcon />
       </Card.Header>
       <Body meal={meal} />
+      <View style={styles.container}>
+      {console.log(meal)}
+            <RNChart style={styles.chart}
+                chartData={generateChartData(_.get('nutrition', meal))}
+                xLabels={xLabels}
+             />
+      </View>
     </Card>
   </TouchableOpacity>
 )
