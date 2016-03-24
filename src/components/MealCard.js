@@ -83,13 +83,10 @@ const MealCard = ({
         <CirclePlusIcon />
       </Card.Header>
       <Body meal={meal} />
-      <View style={styles.container}>
-      {console.log(meal)}
             <RNChart style={styles.chart}
                 chartData={generateChartData(_.get('nutrition', meal))}
                 xLabels={xLabels}
              />
-      </View>
     </Card>
   </TouchableOpacity>
 )
