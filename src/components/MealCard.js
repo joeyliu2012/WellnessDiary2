@@ -21,12 +21,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
+  Nutritionview: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
   chart: {
-		width: 240,
+    flex: 1,
+    width: 240,
 		height: 140,
-		alignSelf: 'center'
-  }
+    alignSelf: 'center'
+  },
+  nutritionListing: {
+    flex: 1,
+    flexDirection: 'column',
+    alignSelf: 'flex-end',
+  },
+  nutritionEntry: {
+    color: Colors.text,
+    fontWeight: '400',
+    fontSize: 14,
+  },
 })
 
 function generateChartData(nutritionData) {
@@ -53,7 +68,34 @@ const xLabels = ['0','1','2','3']
 const Body = ({meal}) => {
   const { photo, nutrition } = meal
   if (photo || nutrition) {
-    return <Card.Body />
+    return (
+      <View style={styles.Nutritionview}>
+        <View style={styles.nutritionListing}>
+          <View style={{flexDirection:'row'}}>
+            <View style={{width: 9, height: 9, backgroundColor: Colors['pink'], alignSelf: 'center'}}></View>
+            <Text style={styles.nutritionEntry}> Carbs: {_.get('carbs', nutrition)}g </Text>
+          </View>
+          <View style={{flexDirection:'row'}}>
+            <View style={{width: 9, height: 9, backgroundColor: Colors['oceanBlue'], alignSelf: 'center'}}></View>
+            <Text style={styles.nutritionEntry}> Fats: {_.get('fats', nutrition)}g </Text>
+          </View>
+          <View style={{flexDirection:'row'}}>
+            <View style={{width: 9, height: 9, backgroundColor: Colors['skyBlue'], alignSelf: 'center'}}></View>
+            <Text style={styles.nutritionEntry}> Fiber: {_.get('fiber', nutrition)}g </Text>
+          </View>
+          <View style={{flexDirection:'row'}}>
+            <View style={{width: 9, height: 9, backgroundColor: Colors['oceanGreen'], alignSelf: 'center'}}></View>
+            <Text style={styles.nutritionEntry}> Calories: {_.get('calories', nutrition)} </Text>
+          </View>
+          <Text> </Text>
+        </View>
+
+        <RNChart style={styles.chart}
+            chartData={generateChartData(_.get('nutrition', meal))}
+            xLabels={xLabels}
+         />
+      </View>
+    )
   }
   return (
     <Card.Body empty>
@@ -83,10 +125,6 @@ const MealCard = ({
         <CirclePlusIcon />
       </Card.Header>
       <Body meal={meal} />
-            <RNChart style={styles.chart}
-                chartData={generateChartData(_.get('nutrition', meal))}
-                xLabels={xLabels}
-             />
     </Card>
   </TouchableOpacity>
 )

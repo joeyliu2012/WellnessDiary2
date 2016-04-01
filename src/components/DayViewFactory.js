@@ -12,9 +12,7 @@ const mapStateToProps = (date) => (state) => ({
   meals: state.meals[date],
 })
 
-
 const DayViewFactory = (date) => (
-<<<<<<< 9b7036c1b8de012bf9bf2b3dc4edcfda686aee85
   connect(
     mapStateToProps(date)
   )((props, context) => {
@@ -25,24 +23,6 @@ const DayViewFactory = (date) => (
         {renderMeals(meals)}
       </ScrollView>
     )
-=======
-
-    connect(
-      mapStateToProps(date),
-      null,
-      null,
-      { pure: true }
-    )(class DayView extends Component {
-    render() {
-      const { meals } = this.props
-      return (
-        <ScrollView>
-          {MEAL_TYPES.map((type) => meals.get(type, { date, type }))
-            .map((meal) => <MealCard key={meal.type} meal={meal} />)}
-        </ScrollView>
-      )
-    }
->>>>>>> WIP - cleanup.
   })
 )
 
