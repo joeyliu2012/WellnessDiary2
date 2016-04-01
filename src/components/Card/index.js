@@ -2,6 +2,7 @@ import React, {
   Component,
   Image,
   StyleSheet,
+  Dimensions,
   View,
 } from 'react-native'
 import { BlurView } from 'react-native-blur'
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   },
   'Card--image': {
     height: 200,
-    width: 335,
+    width: _.get('width', Dimensions.get('window')),
     borderRadius: 10,
     margin: 20,
     marginTop: 0,
