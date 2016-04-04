@@ -6,13 +6,19 @@ import React, {
   ScrollView,
   Dimensions,
 } from 'react-native'
+import { connect } from 'react-redux'
+import { saveMeal } from '../actions/meals'
 import _ from 'lodash/fp'
+import moment from 'moment'
 
 import SharedStyle from '../constants/SharedStyle'
 
 import CloseButton from '../components/CloseButton'
+import CheckButton from '../components/CheckButton'
 import Card from '../components/Card'
 import CirclePlusIcon from '../components/CirclePlusIcon'
+
+import AddPhotoCard from '../components/AddPhotoCard'
 
 const styles = StyleSheet.create({
   'Modal': {
@@ -24,14 +30,50 @@ const styles = StyleSheet.create({
   'Modal-header': {
     margin: 20,
     marginBottom: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 })
 
-export default class Modal extends Component {
+const mapStateToProps = null
+const mapDispatchToProps = {
+  saveMeal,
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(class Modal extends Component {
   static propTypes = {
-    mealType: React.PropTypes.string.isRequired,
+    meal: React.PropTypes.shape({
+      type: React.PropTypes.string.isRequired,
+      date: React.PropTypes.string.isRequired,
+    }).isRequired,
+
     closeModal: React.PropTypes.func.isRequired,
   };
+
+  constructor(props, context) {
+    super(props, context)
+    this.state = {
+      photo: null,
+    }
+
+    this.handleSelectPhoto = this.handleSelectPhoto.bind(this)
+    this.handleSaveMeal = this.handleSaveMeal.bind(this)
+  }
+
+  handleSelectPhoto(photo) {
+    this.setState({photo})
+  }
+
+  handleSaveMeal() {
+    this.props.saveMeal({
+      ...this.props.meal,
+      ...this.state,
+    })
+    this.props.closeModal()
+  }
 
   render() {
     return (
@@ -41,14 +83,10 @@ export default class Modal extends Component {
       ]}>
         <View style={styles['Modal-header']}>
           <CloseButton onPress={this.props.closeModal} />
+          <CheckButton onPress={this.handleSaveMeal} />
         </View>
         <ScrollView>
-          <Card>
-            <Card.Body empty>
-              <CirclePlusIcon />
-              <Text style={{color: 'grey', padding: 8 }}>Add a photo</Text>
-            </Card.Body>
-          </Card>
+          <AddPhotoCard onSelectPhoto={this.handleSelectPhoto} />
           <Card>
             <Card.Body empty>
               <CirclePlusIcon />
@@ -65,4 +103,4 @@ export default class Modal extends Component {
       </View>
     )
   }
-}
+})

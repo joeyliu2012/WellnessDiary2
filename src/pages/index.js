@@ -23,7 +23,7 @@ export default class Index extends Component {
     super(props, context)
     this.state = {
       modalOpen: false,
-      mealType: null,
+      modalProps: {},
     }
 
     this.handleOpenModal = this.handleOpenModal.bind(this)
@@ -36,21 +36,20 @@ export default class Index extends Component {
     }
   }
 
-  handleOpenModal(mealType) {
-    if (_.isEmpty(mealType)) return console.warn('You called openModal with an empty meal type. That\'s not allowed')
-    this.setState({ modalOpen: true, mealType })
+  handleOpenModal(modalProps) {
+    this.setState({ modalOpen: true, modalProps })
   }
 
   handleCloseModal() {
-    this.setState({ modalOpen: false, mealType: null })
+    this.setState({ modalOpen: false, mealType: {} })
   }
 
   render() {
-    const { modalOpen } = this.state
+    const { modalOpen, modalProps } = this.state
     return (
       <View style={styles['Index']}>
-        <Main openModal={this.handleOpenModal} />
-        {modalOpen && <Modal mealType={this.state.mealType} closeModal={this.handleCloseModal} />}
+        <Main />
+        {modalOpen && <Modal {...modalProps} closeModal={this.handleCloseModal} />}
       </View>
     )
   }

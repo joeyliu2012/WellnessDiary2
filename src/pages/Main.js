@@ -15,7 +15,6 @@ import TopNavLink from '../components/TopNavLink'
 import MealCard from '../components/MealCard'
 import Card from '../components/Card'
 
-
 const styles = StyleSheet.create({
   'Main': {
     flex: 1,
