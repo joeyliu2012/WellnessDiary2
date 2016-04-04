@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 18,
   },
-  'Card.Title--blurred': {
+  'Card.Title--shaddow': {
     ...SharedStyle.textShadow,
   },
 })
@@ -21,15 +21,15 @@ const styles = StyleSheet.create({
 export default class Title extends Component {
   static propTypes = {
     children: React.PropTypes.string.isRequired,
-    blurred: React.PropTypes.bool,
+    shaddow: React.PropTypes.bool,
   };
 
   render() {
-    const { blurred } = this.props
+    const { shaddow } = this.props
     return (
       <Text style={[
         styles['Card.Title'],
-        blurred && styles['Card.Title--blurred'],
+        shaddow && styles['Card.Title--shaddow'],
       ]}>
         {this.props.children}
       </Text>

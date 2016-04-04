@@ -9,7 +9,6 @@ import React, {
 import { connect } from 'react-redux'
 import { saveMeal } from '../actions/meals'
 import _ from 'lodash/fp'
-import moment from 'moment'
 
 import SharedStyle from '../constants/SharedStyle'
 
@@ -19,6 +18,7 @@ import Card from '../components/Card'
 import CirclePlusIcon from '../components/CirclePlusIcon'
 
 import AddPhotoCard from '../components/AddPhotoCard'
+import AddNutritionCard from '../components/AddNutritionCard'
 
 const styles = StyleSheet.create({
   'Modal': {
@@ -57,14 +57,27 @@ export default connect(
     super(props, context)
     this.state = {
       photo: null,
+      nutrition: {},
+      ...props.meal,
     }
 
     this.handleSelectPhoto = this.handleSelectPhoto.bind(this)
     this.handleSaveMeal = this.handleSaveMeal.bind(this)
+    this.handleUpdateNutrition = this.handleUpdateNutrition.bind(this)
   }
 
   handleSelectPhoto(photo) {
     this.setState({photo})
+  }
+
+  handleUpdateNutrition(patch) {
+    console.log({patch})
+    this.setState({
+      nutrition: {
+        ...this.state.nutrition,
+        ...patch,
+      }
+    })
   }
 
   handleSaveMeal() {
@@ -86,13 +99,8 @@ export default connect(
           <CheckButton onPress={this.handleSaveMeal} />
         </View>
         <ScrollView>
-          <AddPhotoCard onSelectPhoto={this.handleSelectPhoto} />
-          <Card>
-            <Card.Body empty>
-              <CirclePlusIcon />
-              <Text style={{color: 'grey', padding: 8 }}>Add nutrition information</Text>
-            </Card.Body>
-          </Card>
+          <AddPhotoCard onSelectPhoto={this.handleSelectPhoto} photo={this.state.photo} />
+          <AddNutritionCard onUpdateNutrition={this.handleUpdateNutrition} nutrition={this.state.nutrition} />
           <Card>
             <Card.Body empty>
               <CirclePlusIcon />

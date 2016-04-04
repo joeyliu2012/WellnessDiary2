@@ -4,18 +4,29 @@ import React, {
   Text,
   StyleSheet,
   TouchableOpacity,
+  View,
 } from 'react-native'
 import _ from 'lodash/fp'
-import moment from 'moment'
 import Images from '../constants/Images'
+import SharedStyle from '../constants/SharedStyle'
 import Card from '../components/Card'
+import NutritionBody from '../components/NutritionBody'
 import CirclePlusIcon from '../components/CirclePlusIcon'
 
+const styles = StyleSheet.create({
+  'MealCard--empty-text': {
+    color: 'grey',
+    padding: 8,
+    backgroundColor: 'transparent',
+  }
+})
 
 const Body = ({meal}) => {
   const { photo, nutrition } = meal
-  if (photo || nutrition) {
-    return <Card.Body />
+  if (!_.isEmpty(photo)) {
+    return (
+      <NutritionBody nutrition={nutrition} />
+    )
   }
   return (
     <Card.Body empty>
@@ -26,8 +37,8 @@ const Body = ({meal}) => {
       />
       <Text
         key='text'
-        style={{color:'grey', padding: 8 }}>
-        No food logged for {_.get('type', meal, '').toLowerCase()}
+        style={styles['MealCard--empty-text']}>
+        Nothing logged for {_.get('type', meal, '').toLowerCase()}
       </Text>
     </Card.Body>
   )
@@ -39,9 +50,16 @@ const MealCard = ({
   openModal,
 }) => (
   <TouchableOpacity onPress={() => openModal({meal})}>
-    <Card backgroundImage={_.get('photo', meal)} blurred={!!_.get('photo', meal)}>
+    <Card
+      backgroundImage={_.get('photo', meal)}
+      blurred={!_.isEmpty(meal.photo) /*&& !_.isEmpty(meal.nutrition)*/}
+    >
       <Card.Header>
-        <Card.Title blurred={!_.isEmpty(meal)}>{_.get('type', meal)}</Card.Title>
+        <Card.Title
+          shaddow={!_.isEmpty(meal.photo)}
+        >
+          {_.get('type', meal)}
+        </Card.Title>
         <CirclePlusIcon />
       </Card.Header>
       <Body meal={meal} />
