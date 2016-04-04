@@ -1,3 +1,4 @@
+import _ from 'lodash/fp'
 import { SAVE_MEAL } from '../constants/ActionTypes'
 
 export const saveMeal = ({type, date, photo=null, nutrition={}, location={}}) => ({
@@ -5,7 +6,7 @@ export const saveMeal = ({type, date, photo=null, nutrition={}, location={}}) =>
   payload: {
     type,
     date,
-    photo,
+    photo: _.pick(['uri', 'height', 'width'], photo),
     nutrition,
   },
 })

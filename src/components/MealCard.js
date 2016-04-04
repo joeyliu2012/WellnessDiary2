@@ -51,7 +51,7 @@ const MealCard = ({
 MealCard.propTypes = {
   meal: React.PropTypes.shape({
     type: React.PropTypes.string.isRequired,
-    date: React.PropTypes.instanceOf(moment).isRequired,
+    date: React.PropTypes.string.isRequired,
   }).isRequired,
 }
 MealCard.contextTypes = {

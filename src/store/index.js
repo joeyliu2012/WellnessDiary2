@@ -1,21 +1,20 @@
-import { createStore, applyMiddleware } from 'redux'
-import { Iterable, Map } from 'immutable'
+import { createStore, applyMiddleware, compose } from 'redux'
+import { autoRehydrate } from 'redux-persist'
 import createLogger from 'redux-logger'
 import reducer from '../reducers'
 
 export default createStore(
   reducer,
-  new Map(),
-  applyMiddleware(
-    createLogger({
-      actionTransformer: (action) => ({
-        ...action,
-        type: String(action.type),
-      }),
-      stateTransformer: (state) => {
-        if (Iterable.isIterable(state)) return state.toJS()
-        return state
-      },
-    })
+  {},
+  compose(
+    applyMiddleware(
+      createLogger({
+        actionTransformer: (action) => ({
+          ...action,
+          type: String(action.type),
+        })
+      })
+    ),
+    autoRehydrate()
   )
 )

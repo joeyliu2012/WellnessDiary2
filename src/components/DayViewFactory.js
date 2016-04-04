@@ -2,46 +2,28 @@ import React, {
   Component,
   ScrollView,
 } from 'react-native'
-import { Map } from 'immutable'
+import _ from 'lodash/fp'
 import { connect } from 'react-redux'
 import MealCard from './MealCard'
 
-import Images from '../constants/Images'
-
-const MEAL_TYPES = ['Breakfast', 'Lunch', 'Dinner', 'Snacks']
+const MEAL_TYPES = ['Breakfast', 'Lunch', 'Dinner']
 
 const mapStateToProps = (date) => (state) => ({
-  meals: state.get('meals').get(date, new Map())
+  meals: state.meals[date],
 })
 
 const DayViewFactory = (date) => (
-    connect(
-      mapStateToProps(date),
-      null,
-      null,
-      { pure: true }
-    )(class DayView extends Component {
-    render() {
-      const { meals } = this.props
-      return (
-        <ScrollView>
-          {MEAL_TYPES.map((type) => meals.get(type, { date, type }))
-            .map((meal) => <MealCard key={meal.type} meal={meal} />)}
-        </ScrollView>
-      )
-    }
+  connect(
+    mapStateToProps(date)
+  )((props, context) => {
+    const meals = _.map((type) => _.get(type, props.meals) || ({ type, date }), MEAL_TYPES)
+    const renderMeals = _.map((meal) => <MealCard key={meal.type} meal={meal} />)
+    return (
+      <ScrollView>
+        {renderMeals(meals)}
+      </ScrollView>
+    )
   })
 )
 
 export default DayViewFactory
-
-          // {meals
-          //   .entrySeq()
-          //   .map(([type, meal]) =>
-          //        <MealCard
-          //          key={type}
-          //          meal={_.isEmpty(meal)
-          //            ? { date, type }
-          //            : meal
-          //          }
-          //        />)
