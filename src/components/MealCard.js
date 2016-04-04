@@ -7,7 +7,6 @@ import React, {
   View,
 } from 'react-native'
 import _ from 'lodash/fp'
-import moment from 'moment'
 import Images from '../constants/Images'
 import Card from '../components/Card'
 import CirclePlusIcon from '../components/CirclePlusIcon'

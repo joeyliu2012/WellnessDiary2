@@ -9,7 +9,6 @@ import React, {
 import { connect } from 'react-redux'
 import { saveMeal } from '../actions/meals'
 import _ from 'lodash/fp'
-import moment from 'moment'
 
 import SharedStyle from '../constants/SharedStyle'
 
