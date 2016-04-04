@@ -39,19 +39,19 @@ const NutritionLegend = ({
   <View style={styles['NutritionLegend']}>
     <View style={styles['NutritionLegend-row']}>
       <NutritionLegendIcon color={Colors.pink} />
-      <Text style={styles['NutritionLegend-text']}>Carbs: {carbs}g</Text>
+      <Text style={styles['NutritionLegend-text']}>Carbs: {carbs || 0}g</Text>
     </View>
     <View style={styles['NutritionLegend-row']}>
       <NutritionLegendIcon color={Colors.oceanBlue} />
-      <Text style={styles['NutritionLegend-text']}>Fats: {fats}g</Text>
+      <Text style={styles['NutritionLegend-text']}>Fats: {fats || 0}g</Text>
     </View>
     <View style={styles['NutritionLegend-row']}>
       <NutritionLegendIcon color={Colors.skyBlue} />
-      <Text style={styles['NutritionLegend-text']}>Fiber: {fiber}g</Text>
+      <Text style={styles['NutritionLegend-text']}>Fiber: {fiber || 0}g</Text>
     </View>
     <View style={styles['NutritionLegend-row']}>
       <NutritionLegendIcon color={Colors.oceanGreen} />
-      <Text style={styles['NutritionLegend-text']}>Protien: {protein}g</Text>
+      <Text style={styles['NutritionLegend-text']}>Protien: {protein || 0}g</Text>
     </View>
   </View>
 )

@@ -25,10 +25,10 @@ const NutritionChart = ({
       name: 'BarChart',
       type: 'pie',
       data: [
-        carbs,
-        fats,
-        fiber,
-        protein,
+        carbs || 0,
+        fats || 0,
+        fiber || 0,
+        protein || 0,
       ],
       sliceColors: [Colors.pink, Colors.oceanBlue, Colors.skyBlue, Colors.oceanGreen]
     }]}
