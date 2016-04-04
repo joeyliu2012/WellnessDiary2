@@ -41,6 +41,7 @@ export default class AddPhotoCard extends Component {
       selectedPhoto: null,
       photos: [],
       loading: true,
+      display: !_.isEmpty(props.photo),
     }
 
     this.renderThumbnail = this.renderThumbnail.bind(this)
@@ -82,6 +83,13 @@ export default class AddPhotoCard extends Component {
 
   render() {
     const { photos, loading } = this.state
+    if (this.state.display) {
+      return (
+        <TouchableOpacity onPress={() => this.setState({display: false})}>
+          <Card backgroundImage={this.props.photo} />
+        </TouchableOpacity>
+      )
+    }
     return (
       <Card>
         <Card.Body empty={loading}>

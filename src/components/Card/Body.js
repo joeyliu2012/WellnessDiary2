@@ -21,11 +21,12 @@ const styles = StyleSheet.create({
   },
 })
 
-const Body = ({children, empty}) => (
+const Body = ({children, empty, style}) => (
   <View
     style={[
       styles['Card.Body'],
       empty && styles['Card.Body--empty'],
+      style
     ]}
   >
     {children}
