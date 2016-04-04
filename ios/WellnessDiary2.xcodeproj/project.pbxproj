@@ -27,6 +27,7 @@
 		983DAE93CD7E4585915A79B1 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30389FA1E5974118A697ED61 /* libRNImagePicker.a */; };
 		C49C727C7AC643DBA315F277 /* libRNChart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEC5FA692F744729586F1CF /* libRNChart.a */; };
 		CF56EC61E96141A28709D0A8 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5BB6DE41F3949DBBB0C4604 /* libReactNativePermissions.a */; };
+		F8BA728C4C2E4104AC035875 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87AC785F92E848098CCC4BA7 /* libRNFS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,13 @@
 			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
 			remoteInfo = RNImagePicker;
 		};
+		92FA22B91CB30B0300311325 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6F08D1798CDA4643A00078BB /* RNFS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F12AFB9B1ADAF8F800E0535D;
+			remoteInfo = RNFS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -169,8 +177,10 @@
 		30389FA1E5974118A697ED61 /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
 		49D4AE6AA286420A899BED45 /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
 		5703B6BEEA9E4B33A9AEDA71 /* RNBlur.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
+		6F08D1798CDA4643A00078BB /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		87AC785F92E848098CCC4BA7 /* libRNFS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFS.a; sourceTree = "<group>"; };
 		923EEEC91CA1B3F0001B311B /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		923EEECF1CA1B415001B311B /* libRCTCameraRoll.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRCTCameraRoll.a; path = "../../../../Library/Developer/Xcode/DerivedData/WellnessDiary2-accvxxwvygcikccbctboijgtvlfb/Build/Products/Debug-iphoneos/libRCTCameraRoll.a"; sourceTree = SOURCE_ROOT; };
 		B5BB6DE41F3949DBBB0C4604 /* libReactNativePermissions.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativePermissions.a; sourceTree = "<group>"; };
@@ -205,6 +215,7 @@
 				C49C727C7AC643DBA315F277 /* libRNChart.a in Frameworks */,
 				CF56EC61E96141A28709D0A8 /* libReactNativePermissions.a in Frameworks */,
 				983DAE93CD7E4585915A79B1 /* libRNImagePicker.a in Frameworks */,
+				F8BA728C4C2E4104AC035875 /* libRNFS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +344,7 @@
 				DE18332BA7CF4F2A91F96779 /* RNChart.xcodeproj */,
 				49D4AE6AA286420A899BED45 /* ReactNativePermissions.xcodeproj */,
 				145518F48A194B878D138FE2 /* RNImagePicker.xcodeproj */,
+				6F08D1798CDA4643A00078BB /* RNFS.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -402,6 +414,14 @@
 			isa = PBXGroup;
 			children = (
 				92FA22981CB305AB00311325 /* libRNImagePicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		92FA22A81CB30B0300311325 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92FA22BA1CB30B0300311325 /* libRNFS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -532,6 +552,10 @@
 					ProjectRef = DE18332BA7CF4F2A91F96779 /* RNChart.xcodeproj */;
 				},
 				{
+					ProductGroup = 92FA22A81CB30B0300311325 /* Products */;
+					ProjectRef = 6F08D1798CDA4643A00078BB /* RNFS.xcodeproj */;
+				},
+				{
 					ProductGroup = 92FA22861CB305AB00311325 /* Products */;
 					ProjectRef = 145518F48A194B878D138FE2 /* RNImagePicker.xcodeproj */;
 				},
@@ -650,6 +674,13 @@
 			remoteRef = 92FA22971CB305AB00311325 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		92FA22BA1CB30B0300311325 /* libRNFS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFS.a;
+			remoteRef = 92FA22B91CB30B0300311325 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -750,6 +781,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WellnessDiary2.app/WellnessDiary2";
@@ -770,6 +802,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -795,6 +828,7 @@
 					"$(SRCROOT)/../node_modules/react-native-chart",
 					"$(SRCROOT)/../node_modules/react-native-permissions",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 				INFOPLIST_FILE = WellnessDiary2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -818,6 +852,7 @@
 					"$(SRCROOT)/../node_modules/react-native-chart",
 					"$(SRCROOT)/../node_modules/react-native-permissions",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 				INFOPLIST_FILE = WellnessDiary2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -869,6 +904,7 @@
 					"$(SRCROOT)/../node_modules/react-native-chart",
 					"$(SRCROOT)/../node_modules/react-native-permissions",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -913,6 +949,7 @@
 					"$(SRCROOT)/../node_modules/react-native-chart",
 					"$(SRCROOT)/../node_modules/react-native-permissions",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
