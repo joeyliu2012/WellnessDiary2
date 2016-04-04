@@ -8,10 +8,12 @@ import React, {
   View,
   Text,
   TouchableOpacity,
+  NativeModules,
 } from 'react-native'
 import _ from 'lodash/fp'
 import Card from './Card'
 import Button from './Button'
+const { ImagePickerManager } = NativeModules
 
 const styles = StyleSheet.create({
   'Thumbnail': {
@@ -46,6 +48,7 @@ export default class AddPhotoCard extends Component {
 
     this.renderThumbnail = this.renderThumbnail.bind(this)
     this.handleUseSelectedPhoto = this.handleUseSelectedPhoto.bind(this)
+    this.handleTakePhotoPress = this.handleTakePhotoPress.bind(this)
   }
 
   componentDidMount() {
@@ -59,7 +62,12 @@ export default class AddPhotoCard extends Component {
   }
 
   handleTakePhotoPress() {
-
+    ImagePickerManager.launchCamera({
+      noData: true,
+    }, (response) => {
+      this.setState({display: true})
+      this.handleSelectPhoto(response)
+    })
   }
 
   handleUseSelectedPhoto() {

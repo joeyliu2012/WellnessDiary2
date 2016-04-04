@@ -17,6 +17,7 @@ import CheckButton from '../components/CheckButton'
 import Card from '../components/Card'
 import CirclePlusIcon from '../components/CirclePlusIcon'
 
+import PermissionWrap from '../components/PermissionWrap'
 import AddPhotoCard from '../components/AddPhotoCard'
 import AddNutritionCard from '../components/AddNutritionCard'
 import AddLocationCard from '../components/AddLocationCard'
@@ -105,9 +106,13 @@ export default connect(
           <CheckButton onPress={this.handleSaveMeal} />
         </View>
         <ScrollView>
-          <AddPhotoCard onSelectPhoto={this.handleSelectPhoto} photo={this.state.photo} />
+          <PermissionWrap type="photos">
+            <AddPhotoCard onSelectPhoto={this.handleSelectPhoto} photo={this.state.photo} />
+          </PermissionWrap>
           <AddNutritionCard onUpdateNutrition={this.handleUpdateNutrition} nutrition={this.state.nutrition} />
-          <AddLocationCard onUpdateLocation={this.handleUpdateLocation} location={this.state.location}/>
+          <PermissionWrap type="location">
+            <AddLocationCard onUpdateLocation={this.handleUpdateLocation} location={this.state.location}/>
+          </PermissionWrap>
         </ScrollView>
       </View>
     )
