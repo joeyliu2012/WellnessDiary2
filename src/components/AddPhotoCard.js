@@ -45,6 +45,7 @@ export default class AddPhotoCard extends Component {
     }
 
     this.renderThumbnail = this.renderThumbnail.bind(this)
+    this.handleUseSelectedPhoto = this.handleUseSelectedPhoto.bind(this)
   }
 
   componentDidMount() {
@@ -61,9 +62,14 @@ export default class AddPhotoCard extends Component {
 
   }
 
+  handleUseSelectedPhoto() {
+    this.setState({ display: true })
+  }
+
   handleSelectPhoto(photo) {
+    const { selectedPhoto } = this.state
     this.setState({
-      selectedPhoto: photo.uri,
+      selectedPhoto: this.state.selectedPhoto !== photo.uri ? photo.uri : null,
     }, this.props.onSelectPhoto(photo))
   }
 
@@ -82,8 +88,8 @@ export default class AddPhotoCard extends Component {
   }
 
   render() {
-    const { photos, loading } = this.state
-    if (this.state.display) {
+    const { photos, loading, display, selectedPhoto } = this.state
+    if (display) {
       return (
         <TouchableOpacity onPress={() => this.setState({display: false})}>
           <Card backgroundImage={this.props.photo} />
@@ -99,8 +105,8 @@ export default class AddPhotoCard extends Component {
                 <ScrollView horizontal style={styles['Thumbnails']}>
                  {_.map(this.renderThumbnail, photos)}
                 </ScrollView>
-                <Button onPress={this.handleTakePhotoPress}>
-                  Take Photo
+                <Button onPress={selectedPhoto ? this.handleUseSelectedPhoto : this.handleTakePhotoPress}>
+                  {selectedPhoto ? 'Use selected photo' : 'Take photo'}
                 </Button>
               </View>
           }

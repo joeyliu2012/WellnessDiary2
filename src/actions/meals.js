@@ -8,5 +8,6 @@ export const saveMeal = ({type, date, photo=null, nutrition={}, location={}}) =>
     date,
     photo: _.pick(['uri', 'height', 'width'], photo),
     nutrition,
+    location,
   },
 })
