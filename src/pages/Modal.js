@@ -106,9 +106,7 @@ export default connect(
           <CheckButton onPress={this.handleSaveMeal} />
         </View>
         <ScrollView>
-          <PermissionWrap type="photos">
-            <AddPhotoCard onSelectPhoto={this.handleSelectPhoto} photo={this.state.photo} />
-          </PermissionWrap>
+          <AddPhotoCard onSelectPhoto={this.handleSelectPhoto} photo={this.state.photo} />
           <AddNutritionCard onUpdateNutrition={this.handleUpdateNutrition} nutrition={this.state.nutrition} />
           <PermissionWrap type="location">
             <AddLocationCard onUpdateLocation={this.handleUpdateLocation} location={this.state.location}/>

@@ -15,10 +15,21 @@ StatusBar.setHidden(false)
 StatusBar.setBarStyle('light-content')
 
 class Root extends Component {
+
+  static childContextTypes = {
+    persistor: React.PropTypes.object,
+  };
+
   constructor(props, context) {
     super(props, context)
     this.state = { isLoading: true }
     this._persistor = null
+  }
+
+  getChildContext() {
+    return {
+      persistor: this._persistor,
+    }
   }
 
   componentWillMount() {

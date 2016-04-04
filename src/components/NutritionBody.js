@@ -32,7 +32,7 @@ const NutritionBody = ({nutrition}) => {
         <Text
           key='text'
           style={{color: 'grey', padding: 8, backgroundColor: 'transparent'}}>
-          Log nutrition info
+          Add nutrition info
       </Text>
       </Card.Body>
     )

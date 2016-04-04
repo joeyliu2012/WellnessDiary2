@@ -15,6 +15,13 @@ import Card from './Card'
 import Button from './Button'
 const { ImagePickerManager } = NativeModules
 
+const CAPTURE_OPTIONS = {
+  noData: false,
+  maxHeight: 500,
+  maxWidth: 500,
+  quality: 0.7,
+}
+
 export default class AddPhotoCard extends Component {
   static propTypes = {
     onSelectPhoto: React.PropTypes.func.isRequired,
@@ -32,14 +39,12 @@ export default class AddPhotoCard extends Component {
 
   handleAddPhotoPress() {
     this.setState({ loading: true })
-    ImagePickerManager.showImagePicker({
-      noData: false,
-    }, (response) => {
+    ImagePickerManager.showImagePicker(CAPTURE_OPTIONS, (response) => {
       this.setState({ loading: false })
       if (response.error || response.didCancel) return
       this.setState({display: true})
       this.props.onSelectPhoto({
-        ...response,
+        ..._.pick(['width', 'height'], response),
         isStatic: true,
         uri: `data:image/jpeg;base64,${response.data}`,
       })
