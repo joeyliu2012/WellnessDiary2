@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 
 const Body = ({meal}) => {
   const { photo, nutrition } = meal
-  if (!_.isEmpty(photo)) {
+  if (!_.isEmpty(photo) || !_) {
     return (
       <NutritionBody nutrition={nutrition} />
     )
@@ -51,7 +51,7 @@ const MealCard = ({
 }) => (
   <TouchableOpacity onPress={() => openModal({meal})}>
     <Card
-      backgroundImage={_.get('photo', meal)}
+      backgroundImage={!_.isEmpty(meal.photo) && _.get('photo', meal)}
       blurred={!_.isEmpty(meal.photo) /*&& !_.isEmpty(meal.nutrition)*/}
     >
       <Card.Header>

@@ -1,34 +1,26 @@
 import React, {
   Component,
   Image,
-  CameraRoll,
   StyleSheet,
   ActivityIndicatorIOS,
   ScrollView,
   View,
   Text,
   TouchableOpacity,
+  NativeModules,
 } from 'react-native'
 import _ from 'lodash/fp'
+import Images from '../constants/Images'
 import Card from './Card'
 import Button from './Button'
+const { ImagePickerManager } = NativeModules
 
-const styles = StyleSheet.create({
-  'Thumbnail': {
-    height: 100,
-    width: 100,
-    margin: 5,
-  },
-  'Thumbnail--selected': {
-    borderColor: 'white',
-    borderWidth: 4,
-    borderRadius: 2,
-  },
-  'Thumbnails': {
-    height: 110,
-    marginBottom: 5,
-  }
-})
+const CAPTURE_OPTIONS = {
+  noData: false,
+  maxHeight: 500,
+  maxWidth: 500,
+  quality: 0.7,
+}
 
 export default class AddPhotoCard extends Component {
   static propTypes = {
@@ -38,74 +30,64 @@ export default class AddPhotoCard extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      selectedPhoto: null,
-      photos: [],
-      loading: true,
+      loading: false,
       display: !_.isEmpty(props.photo),
     }
 
-    this.renderThumbnail = this.renderThumbnail.bind(this)
+    this.handleAddPhotoPress = this.handleAddPhotoPress.bind(this)
   }
 
-  componentDidMount() {
-    CameraRoll.getPhotos({ first: 20 })
-      .then((results) => {
-        this.setState({
-          loading: false,
-          photos: _.map('node.image', results.edges),
-        })
+  handleAddPhotoPress() {
+    this.setState({ loading: true })
+    ImagePickerManager.showImagePicker(CAPTURE_OPTIONS, (response) => {
+      this.setState({ loading: false })
+      if (response.error || response.didCancel) return
+      this.setState({display: true})
+      this.props.onSelectPhoto({
+        ..._.pick(['width', 'height'], response),
+        isStatic: true,
+        uri: `data:image/jpeg;base64,${response.data}`,
       })
-  }
-
-  handleTakePhotoPress() {
-
-  }
-
-  handleSelectPhoto(photo) {
-    this.setState({
-      selectedPhoto: photo.uri,
-    }, this.props.onSelectPhoto(photo))
-  }
-
-  renderThumbnail(photo) {
-    return (
-      <TouchableOpacity key={photo.uri} onPress={() => this.handleSelectPhoto(photo)}>
-        <Image
-          style={[
-            styles['Thumbnail'],
-            photo.uri === this.state.selectedPhoto && styles['Thumbnail--selected'],
-          ]}
-          source={photo}
-        />
-      </TouchableOpacity>
-    )
+    })
   }
 
   render() {
-    const { photos, loading } = this.state
-    if (this.state.display) {
+    const { display, loading } = this.state
+    if (display) {
       return (
         <TouchableOpacity onPress={() => this.setState({display: false})}>
           <Card backgroundImage={this.props.photo} />
         </TouchableOpacity>
       )
     }
+    if (loading) {
+      return (
+        <Card>
+          <ActivityIndicatorIOS />
+        </Card>
+      )
+    }
     return (
-      <Card>
-        <Card.Body empty={loading}>
-          {loading
-            ? <ActivityIndicatorIOS />
-            : <View>
-                <ScrollView horizontal style={styles['Thumbnails']}>
-                 {_.map(this.renderThumbnail, photos)}
-                </ScrollView>
-                <Button onPress={this.handleTakePhotoPress}>
-                  Take Photo
-                </Button>
-              </View>
-          }
-        </Card.Body>
-      </Card>
+      <TouchableOpacity onPress={this.handleAddPhotoPress}>
+        <Card>
+          <Card.Body empty>
+            <Image
+              key='image'
+              style={{ width: 20, height: 20}}
+              source={Images['CirclePlus']}
+            />
+            <Text
+              key='text'
+              style={{
+                color: 'grey',
+                padding: 8,
+                backgroundColor: 'transparent',
+              }}>
+              Add a photo
+            </Text>
+          </Card.Body>
+        </Card>
+      </TouchableOpacity>
     )
   }
 }

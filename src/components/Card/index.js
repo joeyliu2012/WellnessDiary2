@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   'Card--image': {
     height: 200,
     width: _.get('width', Dimensions.get('window')),
+    backgroundColor: Colors.cardBackground,
     borderRadius: 10,
     margin: 20,
     marginTop: 0,

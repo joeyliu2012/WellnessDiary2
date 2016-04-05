@@ -17,8 +17,10 @@ import CheckButton from '../components/CheckButton'
 import Card from '../components/Card'
 import CirclePlusIcon from '../components/CirclePlusIcon'
 
+import PermissionWrap from '../components/PermissionWrap'
 import AddPhotoCard from '../components/AddPhotoCard'
 import AddNutritionCard from '../components/AddNutritionCard'
+import AddLocationCard from '../components/AddLocationCard'
 
 const styles = StyleSheet.create({
   'Modal': {
@@ -58,12 +60,14 @@ export default connect(
     this.state = {
       photo: null,
       nutrition: {},
+      location: null,
       ...props.meal,
     }
 
     this.handleSelectPhoto = this.handleSelectPhoto.bind(this)
     this.handleSaveMeal = this.handleSaveMeal.bind(this)
     this.handleUpdateNutrition = this.handleUpdateNutrition.bind(this)
+    this.handleUpdateLocation = this.handleUpdateLocation.bind(this)
   }
 
   handleSelectPhoto(photo) {
@@ -71,13 +75,16 @@ export default connect(
   }
 
   handleUpdateNutrition(patch) {
-    console.log({patch})
     this.setState({
       nutrition: {
         ...this.state.nutrition,
         ...patch,
       }
     })
+  }
+
+  handleUpdateLocation(location) {
+    this.setState({ location })
   }
 
   handleSaveMeal() {
@@ -101,12 +108,9 @@ export default connect(
         <ScrollView>
           <AddPhotoCard onSelectPhoto={this.handleSelectPhoto} photo={this.state.photo} />
           <AddNutritionCard onUpdateNutrition={this.handleUpdateNutrition} nutrition={this.state.nutrition} />
-          <Card>
-            <Card.Body empty>
-              <CirclePlusIcon />
-              <Text style={{color: 'grey', padding: 8 }}>Add location</Text>
-            </Card.Body>
-          </Card>
+          <PermissionWrap type="location">
+            <AddLocationCard onUpdateLocation={this.handleUpdateLocation} location={this.state.location}/>
+          </PermissionWrap>
         </ScrollView>
       </View>
     )
