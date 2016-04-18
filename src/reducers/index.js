@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 
-import meals from './meals'
+import dropbox from './dropbox'
+import database from './database'
 
 export default combineReducers({
-  meals,
+  dropbox,
+  database,
 })

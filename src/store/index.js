@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import { autoRehydrate } from 'redux-persist'
 import createLogger from 'redux-logger'
+import { persist } from '../Utils'
 import reducer from '../reducers'
 
 export default createStore(
@@ -13,8 +13,8 @@ export default createStore(
           ...action,
           type: String(action.type),
         })
-      })
-    ),
-    autoRehydrate()
+      }),
+      persist,
+    )
   )
 )
