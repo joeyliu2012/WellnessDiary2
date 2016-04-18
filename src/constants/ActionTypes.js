@@ -1,3 +1,5 @@
 export const SAVE_MEAL = Symbol.for('ActionTypes.SAVE_MEAL')
+export const MEAL_FETCH_START = Symbol.for('ActionTypes.MEAL_FETCH_START')
+export const MEALS_FETCHED = Symbol.for('ActionTypes.MEALS_FETCHED')
 export const LOG_IN = Symbol.for('ActionTypes.LOG_IN')
 export const LOG_OUT = Symbol.for('ActionTypes.LOG_OUT')

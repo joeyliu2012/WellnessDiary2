@@ -34,10 +34,8 @@ export default class Dropbox {
       body: typeof value === 'string' ? value : JSON.stringify(value),
     })
     .then(r => {
-      console.log(r)
       if (r.ok) return r.json()
     })
-    .then(r => console.log(r))
   }
 
 }

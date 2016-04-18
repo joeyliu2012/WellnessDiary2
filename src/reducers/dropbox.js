@@ -5,13 +5,10 @@ import {
 
 
 const dropbox = (
-  // state = {
-  //   token: null,
-  //   isLoggedIn: false,
-  // },
   state = {
-    token: 'UW2D3lb3nvkAAAAAAAArlP-BxrCwSVTpuCqUF3FnEa5zFMjflNKZtJP5uz3vH8yz',
-    isLoggedIn: true,
+    token: null,
+    uid: null,
+    isLoggedIn: false,
   },
   action
 ) => {
@@ -20,11 +17,13 @@ const dropbox = (
       return {
         isLoggedIn: true,
         token: action.payload.token,
+        uid: action.payload.uid,
       }
     case LOG_OUT:
       return {
         isLoggedIn: false,
         token: null,
+        uid: null,
       }
     default:
       return state

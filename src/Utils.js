@@ -9,8 +9,7 @@ export const yesterday = () => moment().startOf('day').subtract(1, 'days').forma
 
 
 export const persist = ({getState}) => next => action => {
-  const o = getState().database
-  const { dropbox } = getState()
+  const { dropbox, database } = getState()
   const shouldUpload = dropbox.isLoggedIn && dropbox.token
   const client = new Dropbox(dropbox.token)
   if (action.type === SAVE_MEAL) {
@@ -20,22 +19,17 @@ export const persist = ({getState}) => next => action => {
         [action.payload.type]: action.payload,
       })
       AsyncStorage.setItem(action.payload.date, entry, () => {
+        next(action)
         if (shouldUpload) {
           client.setItem(action.payload.date, entry)
         }
       })
     })
+  } else {
+    next(action)
   }
-  next(action)
-  const n = getState().database
-  console.log('checking database')
-  if (!_.isEqual(o, n)) {
-    AsyncStorage.setItem('database', JSON.stringify(n))
-    console.log('set in async storage')
-    if (shouldUpload) {
-      client.setItem('database', JSON.stringify(n))
-      console.log('set in dropbox')
-    }
+  if (shouldUpload && !_.isEqual(database, getState().database)) {
+    client.setItem('database', JSON.stringify(getState().database))
   }
 }
 

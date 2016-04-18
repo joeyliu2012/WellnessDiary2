@@ -829,10 +829,12 @@
 					"$(SRCROOT)/../node_modules/react-native-permissions",
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/**",
 				);
 				INFOPLIST_FILE = WellnessDiary2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ohio.nevergostabel.WellnessDiary2;
 				PRODUCT_NAME = WellnessDiary2;
 				PROVISIONING_PROFILE = "";
 			};
@@ -857,6 +859,7 @@
 				INFOPLIST_FILE = WellnessDiary2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ohio.nevergostabel.WellnessDiary2;
 				PRODUCT_NAME = WellnessDiary2;
 				PROVISIONING_PROFILE = "";
 			};

@@ -1,6 +1,7 @@
 import _ from 'lodash/fp'
 import {
   SAVE_MEAL,
+  MEALS_FETCHED,
 } from '../constants/ActionTypes'
 
 const meals = (state = {}, action) => {
@@ -14,6 +15,11 @@ const meals = (state = {}, action) => {
         ...state[date],
         ...entry,
       }
+    }
+  case MEALS_FETCHED: 
+    return {
+      ...state,
+      [action.payload.date]: action.payload.meals,
     }
   default:
     return state

@@ -5,7 +5,11 @@ import React, {
   Component,
   TouchableOpacity,
   Alert,
+  Linking,
 } from 'react-native'
+import { APP_KEY } from '../constants/Dropbox'
+import { connect } from 'react-redux'
+import { logout } from '../actions/dropbox'
 
 const Row = ({children, onPress}) => (
   <TouchableOpacity onPress={onPress}>
@@ -49,49 +53,39 @@ const Value = ({children}) => (
   </Text>
 )
 
-export default class Settings extends Component {
-  static contextTypes = {
-    persistor: React.PropTypes.object.isRequired,
-  };
-
+export default connect(
+  ({dropbox}) => ({ dropbox }),
+  { logout },
+)(class Settings extends Component {
   constructor(props, context) {
     super(props, context)
-    this.handlePressDeleteAll = this.handlePressDeleteAll.bind(this)
+    this.handleDropboxLogout = this.handleDropboxLogout.bind(this)
   }
 
-  handlePressMissingFeature(f) {
-    return () => {
-      Alert.alert(
-        'Coming soon',
-        `${f} has not been added yet.`,
-        [{text: 'Dismiss', onPress: () => null}]
-      )
-    }
+  handleDropboxLogin() {
+    Linking.openURL(`https://www.dropbox.com/1/oauth2/authorize?response_type=token&client_id=${APP_KEY}&redirect_uri=wellnessd://auth`)
   }
 
-  handlePressDeleteAll() {
+  handleDropboxLogout() {
     Alert.alert(
-      'WARNING',
-      'Pressing ERASE will delete ALL stored data including photos, nutrition informaion, and location data',
+      'Are you sure?',
+      'Logging out of dropbox means your meal data will no longer be synced in the cloud',
       [
-        { text: 'Canel', onPress: () => null },
-        { text: 'ERASE', onPress: this.context.persistor.purgeAll },
+        { text: 'No', onPress: () => null, style: 'cancel' },
+        { text: 'Yes', onPress: this.props.logout },
       ]
     )
   }
 
   render() {
+    const { isLoggedIn } = this.props.dropbox
     return (
       <ScrollView>
-        <Row onPress={this.handlePressMissingFeature('Dropbox sync')}>
+        <Row onPress={isLoggedIn ? this.handleDropboxLogout : this.handleDropboxLogin}>
           <Label>Dropbox Sync</Label>
-          <Value>Off</Value>
-        </Row>
-        <Row onPress={this.handlePressDeleteAll}>
-          <Label>Delete all data</Label>
-          <Value>DEBUG</Value>
+          <Value>{isLoggedIn ? 'On' : 'Off'}</Value>
         </Row>
       </ScrollView>
     )
   }
-}
+})
