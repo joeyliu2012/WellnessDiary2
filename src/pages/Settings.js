@@ -1,4 +1,4 @@
-import React, {
+  import React, {
   ScrollView,
   View,
   Text,
@@ -85,7 +85,35 @@ export default connect(
           <Label>Dropbox Sync</Label>
           <Value>{isLoggedIn ? 'On' : 'Off'}</Value>
         </Row>
+        <Text style={{
+          color: 'white',
+          fontSize: 18,
+          fontWeight: '700',
+          flexDirection: 'row',
+          marginTop: 30,
+          marginLeft: 20,
+          marginRight: 20,
+          padding: 10,
+        }}>About</Text>
+        <Text style={{
+          color: 'grey',
+          fontSize: 15,
+          fontWeight: '600',
+          flexDirection: 'row',
+          marginLeft: 20,
+          marginRight: 5,
+          lineHeight: 20,
+          padding: 10,
+        }}>Welcome to Wellness Diary by Never Go Stable.
+        This app is designed to record and track your food nutrition.
+        Like Calories, Carbs, Fats, Fiber and etc. Besides, You can choose
+        upload food photos and share your location. Your data always save
+        and synchronize with a 3rd party dropbox, so you data never get lost.
+        The purpose of this app is by using this app to recored meals.
+        It makes you diet regular and imporve your health.
+        </Text>
       </ScrollView>
+
     )
   }
 })
