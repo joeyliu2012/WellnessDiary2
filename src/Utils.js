@@ -32,4 +32,3 @@ export const persist = ({getState}) => next => action => {
     client.setItem('database', JSON.stringify(getState().database))
   }
 }
-
