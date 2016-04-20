@@ -51,7 +51,7 @@ const NutritionLegend = ({
     </View>
     <View style={styles['NutritionLegend-row']}>
       <NutritionLegendIcon color={Colors.oceanGreen} />
-      <Text style={styles['NutritionLegend-text']}>Protien: {protein || 0}g</Text>
+      <Text style={styles['NutritionLegend-text']}>Protein: {protein || 0}g</Text>
     </View>
   </View>
 )
