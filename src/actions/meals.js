@@ -2,6 +2,7 @@ import {
   AsyncStorage,
 } from 'react-native'
 import _ from 'lodash/fp'
+import moment from 'moment'
 import {
   SAVE_MEAL,
   MEAL_FETCH_START,
