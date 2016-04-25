@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
 
 const Body = ({meal}) => {
   const { photo, nutrition } = meal
-  if (!_.isEmpty(photo) || !_) {
+  // console.log({photo, nutrition})
+  if (!_.isEmpty(photo) || !_.isEmpty(nutrition)) {
     return (
       <NutritionBody nutrition={nutrition} />
     )
@@ -49,7 +50,7 @@ const MealCard = ({
 }, {
   openModal,
 }) => (
-  <TouchableOpacity onPress={() => openModal({meal})}>
+  <TouchableOpacity onPress={meal.date ? () => openModal({meal}) : () => null}>
     <Card
       backgroundImage={!_.isEmpty(meal.photo) && _.get('photo', meal)}
       blurred={!_.isEmpty(meal.photo) /*&& !_.isEmpty(meal.nutrition)*/}
@@ -69,7 +70,6 @@ const MealCard = ({
 MealCard.propTypes = {
   meal: React.PropTypes.shape({
     type: React.PropTypes.string.isRequired,
-    date: React.PropTypes.string.isRequired,
   }).isRequired,
 }
 MealCard.contextTypes = {
