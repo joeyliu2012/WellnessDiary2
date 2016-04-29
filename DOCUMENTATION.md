@@ -63,24 +63,38 @@ src
     └── Dropbox.js
 ```
 
-## App Structure
+### App Structure
 
 The app is built using UI components. Components are small pieces of UI code that act mostly like functions. Each component returns a view which is then rendered by React Native. Some components do maintain some internal state. All views rendered by each component are pure functions of state and properties passed to them.
 
+
+## Pages
+
 There are four main pages within the app...
 
-## Today/Yesterday
+### Today/Yesterday
 
 This is the primary view of the app. It displays the most recent meals entered. These components are generated using the `DayViewFactory` which is passed what day to display and returns a new component that can be displayed.
 
-## History
+### History
 
 This page pulls nutrition information from all meals ever logged and displays a weekly overview.
 
-## Settings
+### Settings
 
 This shows the about information and allows the user to toggle Dropbox sync.
 
-## Modal
+### Modal
 
 This allows the creation and editing of meal entries.
+
+
+## Highlighted components
+
+### `<Card />`
+
+The `Card` component is used throughout the app as the main UI element. Is is used to display everything from meal entries to photos, location, and nutrition information. This establishes a consistent and understandable design.
+
+### `<PermissionWrap />`
+
+The `PermissionWrap` component allows the delayed invoking of code until certain permission has been granted by the user. This prevents the user from being bombarded with promptes when first opening the app and pairs asking for permission with intent to use that permission. For example, this component says "Enable location services to track location", when pressed it prompts the user for access, and once granted, allows passthrough to the `<AddLocationCard />`
