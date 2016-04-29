@@ -98,3 +98,42 @@ The `Card` component is used throughout the app as the main UI element. Is is us
 ### `<PermissionWrap />`
 
 The `PermissionWrap` component allows the delayed invoking of code until certain permission has been granted by the user. This prevents the user from being bombarded with promptes when first opening the app and pairs asking for permission with intent to use that permission. For example, this component says "Enable location services to track location", when pressed it prompts the user for access, and once granted, allows passthrough to the `<AddLocationCard />`
+
+## Data storage and cache
+
+The app uses Redux as a means for main application state maintenance. The app state is stored as a single JavaScript object and used throughout the app. The shape of the state is as follows:
+
+```javascript
+{
+  meals: {
+    [date]: {
+      Breakfast: { ... },
+      Lunch: {
+        photo: string,
+        nutrition: {
+          calories: number,
+          carbs: number,
+          fats: number,
+          protein: number,
+          fiber: number
+        },
+      Dinner: { ... }
+    }
+    ...
+  },
+  loading: {
+    [key]: boolean,
+  },
+  dropbox: {
+    isLoggedIn: boolean,
+    token: string,
+  },
+  database: Array<[date strings]>,
+  history: {
+    // Similar to meals but keyed on `year-weekNumber` and only stores
+    // nutrition information
+  }
+}
+```
+
+
