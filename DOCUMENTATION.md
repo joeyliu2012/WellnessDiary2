@@ -140,3 +140,10 @@ Some keys of state are persisted constantly and in their entirety to disk. These
 
 Other keys are used as cache and the persisted information is only on disk until "requested" by the app. At which point `loading` is set to true for that key until it has been pulled from disk and exists in the store cache. This prevents large amounts of memory use and speed up the app overall.
 
+## Some words on Redux
+
+To view all of redux's paterns and uses, [view the documentation](http://redux.js.org/index.html).
+
+Redux maintains app state through the use of reducer functions. App state is stored as a single object. This object can be changed only through dispatching actions. Actions are also objects. Actions have a `type` property and a `payload`. Type is always a string from the `ActionTypes` file. Each key on the state object has a respective reducer function. This function switches on the action type and returns a new object. All reducers have a default case where they return the current state.
+
+This means that application interaction and state can be modeled as an initial state and a sequence of actions. These actions are "reduced" (see [`Array.prototype.reduce`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)) into the next state.
