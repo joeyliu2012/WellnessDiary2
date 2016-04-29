@@ -1,3 +1,10 @@
+/*
+ * This file intializes the app and also handles
+ * when the app has been open by dropbox to save
+ * the dropbox auth token and keep the use signed
+ * in.
+ *
+ */
 import React, {
   AppRegistry,
   Component,
