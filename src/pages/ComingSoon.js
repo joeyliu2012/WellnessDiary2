@@ -6,7 +6,7 @@ import React, {
 import Colors from '../constants/Colors'
 
 const styles = StyleSheet.create({
-  'ComingSoon': {
+  ComingSoon: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 })
 
 const ComingSoon = () => (
-  <View style={styles['ComingSoon']}>
+  <View style={styles.ComingSoon}>
     <Text style={styles['ComingSoon-text']}>Coming Soon</Text>
   </View>
 )

@@ -1,3 +1,3 @@
 export default {
-  today: Symbol('PageNames.today')
+  today: Symbol('PageNames.today'),
 }

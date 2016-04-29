@@ -4,7 +4,7 @@ import React, {
 } from 'react-native'
 import Images from '../constants/Images'
 
-const CloseButton = ({onPress}) => (
+const CloseButton = ({ onPress }) => (
   <TouchableOpacity onPress={onPress}>
     <Image source={Images['CloseIcon']} />
   </TouchableOpacity>

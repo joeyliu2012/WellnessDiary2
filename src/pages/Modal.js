@@ -1,7 +1,6 @@
 import React, {
   Component,
   StyleSheet,
-  Text,
   View,
   ScrollView,
   Dimensions,
@@ -14,8 +13,6 @@ import SharedStyle from '../constants/SharedStyle'
 
 import CloseButton from '../components/CloseButton'
 import CheckButton from '../components/CheckButton'
-import Card from '../components/Card'
-import CirclePlusIcon from '../components/CirclePlusIcon'
 
 import PermissionWrap from '../components/PermissionWrap'
 import AddPhotoCard from '../components/AddPhotoCard'
@@ -23,7 +20,7 @@ import AddNutritionCard from '../components/AddNutritionCard'
 import AddLocationCard from '../components/AddLocationCard'
 
 const styles = StyleSheet.create({
-  'Modal': {
+  Modal: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -53,6 +50,7 @@ export default connect(
     }).isRequired,
 
     closeModal: React.PropTypes.func.isRequired,
+    saveMeal: React.PropTypes.func,
   };
 
   constructor(props, context) {
@@ -71,7 +69,7 @@ export default connect(
   }
 
   handleSelectPhoto(photo) {
-    this.setState({photo})
+    this.setState({ photo })
   }
 
   handleUpdateNutrition(patch) {
@@ -79,7 +77,7 @@ export default connect(
       nutrition: {
         ...this.state.nutrition,
         ...patch,
-      }
+      },
     })
   }
 
@@ -97,19 +95,27 @@ export default connect(
 
   render() {
     return (
-      <View style={[
-        styles['Modal'],
-        _.pick(['width', 'height'], Dimensions.get('window'))
-      ]}>
+      <View
+        style={[
+          styles.Modal,
+          _.pick(['width', 'height'], Dimensions.get('window')),
+        ]}
+    >
         <View style={styles['Modal-header']}>
           <CloseButton onPress={this.props.closeModal} />
           <CheckButton onPress={this.handleSaveMeal} />
         </View>
         <ScrollView>
           <AddPhotoCard onSelectPhoto={this.handleSelectPhoto} photo={this.state.photo} />
-          <AddNutritionCard onUpdateNutrition={this.handleUpdateNutrition} nutrition={this.state.nutrition} />
+          <AddNutritionCard
+            onUpdateNutrition={this.handleUpdateNutrition}
+            nutrition={this.state.nutrition}
+          />
           <PermissionWrap type="location">
-            <AddLocationCard onUpdateLocation={this.handleUpdateLocation} location={this.state.location}/>
+            <AddLocationCard
+              onUpdateLocation={this.handleUpdateLocation}
+              location={this.state.location}
+            />
           </PermissionWrap>
         </ScrollView>
       </View>

@@ -4,7 +4,7 @@ import {
 } from '../constants/ActionTypes'
 
 const loading = (state = {}, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case MEAL_FETCH_START:
       return {
         ...state,

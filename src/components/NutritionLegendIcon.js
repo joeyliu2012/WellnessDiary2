@@ -5,9 +5,9 @@ import React, {
 
 const NutritionLegendIcon = ({
   color,
-  size=10,
+  size = 10,
 }) => (
-  <View 
+  <View
     style={{
       width: size,
       height: size,

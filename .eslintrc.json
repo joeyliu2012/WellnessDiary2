@@ -1,0 +1,15 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "plugin": [ "flowtype" ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "semi": ["error", "never"],
+    "new-cap": ["error", {"capIsNewExceptions": ["DayViewFactory"]}],
+    "import/no-unresolved": ["error", {"ignore": ["png$"]}]
+  }
+}

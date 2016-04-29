@@ -4,7 +4,7 @@ import React, {
 } from 'react-native'
 import Images from '../constants/Images'
 
-const CheckButton = ({onPress}) => (
+const CheckButton = ({ onPress }) => (
   <TouchableOpacity onPress={onPress}>
     <Image source={Images['CheckIcon']} />
   </TouchableOpacity>

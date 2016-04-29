@@ -9,7 +9,7 @@ import {
   MEALS_FETCHED,
 } from '../constants/ActionTypes'
 
-export const saveMeal = ({type, date, photo=null, nutrition={}, location={}}) => ({
+export const saveMeal = ({ type, date, photo = null, nutrition = {}, location = {} }) => ({
   type: SAVE_MEAL,
   payload: {
     type,
