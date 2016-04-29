@@ -62,3 +62,25 @@ src
 └── xhr                           Dropbox client methods
     └── Dropbox.js
 ```
+
+## App Structure
+
+The app is built using UI components. Components are small pieces of UI code that act mostly like functions. Each component returns a view which is then rendered by React Native. Some components do maintain some internal state. All views rendered by each component are pure functions of state and properties passed to them.
+
+There are four main pages within the app...
+
+## Today/Yesterday
+
+This is the primary view of the app. It displays the most recent meals entered. These components are generated using the `DayViewFactory` which is passed what day to display and returns a new component that can be displayed.
+
+## History
+
+This page pulls nutrition information from all meals ever logged and displays a weekly overview.
+
+## Settings
+
+This shows the about information and allows the user to toggle Dropbox sync.
+
+## Modal
+
+This allows the creation and editing of meal entries.
