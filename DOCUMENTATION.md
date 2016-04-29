@@ -59,6 +59,6 @@ src
 │   └── meals.js
 ├── store                         The redux store, used as cache
 │   └── index.js
-└── xhr                   Dropbox client methods
+└── xhr                           Dropbox client methods
     └── Dropbox.js
 ```
