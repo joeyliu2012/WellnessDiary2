@@ -136,4 +136,7 @@ The app uses Redux as a means for main application state maintenance. The app st
 }
 ```
 
+Some keys of state are persisted constantly and in their entirety to disk. These keys are database and dropbox. This means that a user will stay logged in to dropbox across sessions of the app.
+
+Other keys are used as cache and the persisted information is only on disk until "requested" by the app. At which point `loading` is set to true for that key until it has been pulled from disk and exists in the store cache. This prevents large amounts of memory use and speed up the app overall.
 
