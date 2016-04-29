@@ -20,19 +20,18 @@ const styles = StyleSheet.create({
   },
 })
 
-const NutritionBody = ({ nutrition }) => {
-  if (_.isEmpty(_.pick(['protein', 'fats', 'carbs', 'fiber'], nutrition))) {
+const NutritionBody = ({nutrition}) => {
+  if (_.isEmpty(_.pick(['protein','fats','carbs','fiber'], nutrition))) {
     return (
-      <Card.Body style={{ height: 140 }} empty>
+      <Card.Body style={{height: 140}} empty>
         <Image
-          key="image"
-          style={{ width: 20, height: 20 }}
+          key='image'
+          style={{ width: 20, height: 20}}
           source={Images['CirclePlus']}
         />
         <Text
-          key="text"
-          style={{ color: 'grey', padding: 8, backgroundColor: 'transparent' }}
-    >
+          key='text'
+          style={{color: 'grey', padding: 8, backgroundColor: 'transparent'}}>
           Add nutrition info
       </Text>
       </Card.Body>

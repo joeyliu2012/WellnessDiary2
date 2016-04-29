@@ -5,12 +5,13 @@ import React, {
   ActivityIndicatorIOS,
   TouchableOpacity,
 } from 'react-native'
+import _ from 'lodash/fp'
 import Permissions from 'react-native-permissions'
 import Card from './Card'
 
 const PERMISSION_STATUS_FN_MAP = {
-  location: Permissions.locationPermissionStatus,
-  photos: Permissions.photoPermissionStatus,
+  'location': Permissions.locationPermissionStatus,
+  'photos': Permissions.photoPermissionStatus,
 }
 
 export default class PermissionWrap extends Component {
@@ -50,15 +51,14 @@ export default class PermissionWrap extends Component {
       return this.props.children
     if (this.state.permissionStatus === Permissions.StatusUndetermined) {
       return (
-        <TouchableOpacity onPress={() => this.setState({ confirmed: true })}>
+        <TouchableOpacity onPress={() => this.setState({confirmed: true})}>
           <Card>
             <Card.Body empty>
-              <Text style={{ color: 'white' }}>Please allow access to {this.props.type}</Text>
+              <Text style={{color: 'white'}}>Please allow access to {this.props.type}</Text>
             </Card.Body>
           </Card>
         </TouchableOpacity>
       )
     }
-    return <Card />
   }
 }

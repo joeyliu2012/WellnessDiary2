@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const Body = ({ meal }) => {
+const Body = ({meal}) => {
   const { photo, nutrition } = meal
   // console.log({photo, nutrition})
   if (!_.isEmpty(photo) || !_.isEmpty(nutrition)) {
@@ -32,14 +32,13 @@ const Body = ({ meal }) => {
   return (
     <Card.Body empty>
       <Image
-        key="image"
-        style={{ width: 20, height: 20 }}
+        key='image'
+        style={{ width: 20, height: 20}}
         source={Images['CirclePlus']}
       />
       <Text
-        key="text"
-        style={styles['MealCard--empty-text']}
-  >
+        key='text'
+        style={styles['MealCard--empty-text']}>
         Nothing logged for {_.get('type', meal, '').toLowerCase()}
       </Text>
     </Card.Body>
@@ -51,10 +50,10 @@ const MealCard = ({
 }, {
   openModal,
 }) => (
-  <TouchableOpacity onPress={meal.date ? () => openModal({ meal }) : () => null}>
+  <TouchableOpacity onPress={meal.date ? () => openModal({meal}) : () => null}>
     <Card
       backgroundImage={!_.isEmpty(meal.photo) && _.get('photo', meal)}
-      blurred={!_.isEmpty(meal.photo)}
+      blurred={!_.isEmpty(meal.photo) /*&& !_.isEmpty(meal.nutrition)*/}
     >
       <Card.Header>
         <Card.Title

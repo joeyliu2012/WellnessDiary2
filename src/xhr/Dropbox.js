@@ -8,7 +8,7 @@ export default class Dropbox {
       method: 'POST',
       headers: {
         'Content-Type': 'application/octet-stream',
-        Authorization: `Bearer ${this.token}`,
+        'Authorization': `Bearer ${this.token}`, 
         'Dropbox-API-Arg': JSON.stringify({
           path: `/${key}.json`,
         }),
@@ -16,7 +16,6 @@ export default class Dropbox {
     })
     .then(r => {
       if (r.ok) return r.json()
-      return null
     })
   }
 
@@ -25,7 +24,7 @@ export default class Dropbox {
       method: 'POST',
       headers: {
         'Content-Type': 'application/octet-stream',
-        Authorization: `Bearer ${this.token}`,
+        'Authorization': `Bearer ${this.token}`, 
         'Dropbox-API-Arg': JSON.stringify({
           path: `/${key}.json`,
           mode: 'overwrite',
@@ -36,7 +35,6 @@ export default class Dropbox {
     })
     .then(r => {
       if (r.ok) return r.json()
-      return null
     })
   }
 

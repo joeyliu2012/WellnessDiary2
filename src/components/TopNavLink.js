@@ -1,4 +1,5 @@
 import React, {
+  Component,
   View,
   TouchableOpacity,
   Text,
@@ -9,7 +10,7 @@ import Colors from '../constants/Colors'
 import Images from '../constants/Images'
 
 const styles = StyleSheet.create({
-  TopNavLink: {
+  'TopNavLink': {
     paddingRight: 10,
   },
   'TopNavLink-text': {
@@ -29,17 +30,15 @@ const TopNavLink = ({
   children,
 }) => (
   <TouchableOpacity
-    style={styles.TopNavLink}
+    style={styles['TopNavLink']}
     onPress={onPress}
   >
     <View style={styles['TopNavLink-inner']}>
-      <Text
-        style={[
-          styles['TopNavLink-text'],
-          active && { color: Colors.text },
-        ]}
->{children}</Text>
-      {active &&
+      <Text style={[
+        styles['TopNavLink-text'],
+        active && { color: Colors.text },
+      ]}>{children}</Text>
+      {active && 
         <Image
           style={styles['TopNavLink-active']}
           source={Images['TopNavLink-active']}

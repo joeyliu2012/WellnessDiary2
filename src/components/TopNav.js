@@ -1,4 +1,5 @@
 import React, {
+  Component,
   View,
   StyleSheet,
   Image,
@@ -7,7 +8,7 @@ import React, {
 import Images from '../constants/Images'
 
 const styles = StyleSheet.create({
-  TopNav: {
+  'TopNav': {
     justifyContent: 'space-between',
     flexDirection: 'row',
     margin: 20,
@@ -22,7 +23,7 @@ const TopNav = ({
   onPressSettings,
   children,
 }) => (
-  <View style={styles.TopNav}>
+  <View style={styles['TopNav']}>
     <View style={styles['TopNav-left']}>
       {children}
     </View>

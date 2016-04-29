@@ -3,12 +3,13 @@ import React, {
   StyleSheet,
   View,
 } from 'react-native'
+import _ from 'lodash/fp'
 
 import Main from './Main'
 import Modal from './Modal'
 
 const styles = StyleSheet.create({
-  Index: {
+  'Index': {
     flex: 1,
   },
 })
@@ -46,7 +47,7 @@ export default class Index extends Component {
   render() {
     const { modalOpen, modalProps } = this.state
     return (
-      <View style={styles.Index}>
+      <View style={styles['Index']}>
         <Main />
         {modalOpen && <Modal {...modalProps} closeModal={this.handleCloseModal} />}
       </View>

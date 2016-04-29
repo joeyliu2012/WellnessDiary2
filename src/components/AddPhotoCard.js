@@ -42,7 +42,7 @@ export default class AddPhotoCard extends Component {
     ImagePickerManager.showImagePicker(CAPTURE_OPTIONS, (response) => {
       this.setState({ loading: false })
       if (response.error || response.didCancel) return
-      this.setState({ display: true })
+      this.setState({display: true})
       this.props.onSelectPhoto({
         ..._.pick(['width', 'height'], response),
         isStatic: true,
@@ -55,7 +55,7 @@ export default class AddPhotoCard extends Component {
     const { display, loading } = this.state
     if (display) {
       return (
-        <TouchableOpacity onPress={() => this.setState({ display: false })}>
+        <TouchableOpacity onPress={() => this.setState({display: false})}>
           <Card backgroundImage={this.props.photo} />
         </TouchableOpacity>
       )
@@ -72,18 +72,17 @@ export default class AddPhotoCard extends Component {
         <Card>
           <Card.Body empty>
             <Image
-              key="image"
-              style={{ width: 20, height: 20 }}
+              key='image'
+              style={{ width: 20, height: 20}}
               source={Images['CirclePlus']}
             />
             <Text
-              key="text"
+              key='text'
               style={{
                 color: 'grey',
                 padding: 8,
                 backgroundColor: 'transparent',
-              }}
-    >
+              }}>
               Add a photo
             </Text>
           </Card.Body>

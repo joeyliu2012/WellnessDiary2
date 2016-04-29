@@ -5,11 +5,11 @@ import {
 } from 'react-native'
 import { HISTORY_FETCHED } from '../constants/ActionTypes'
 
-function fetchEntry(key: string): void {
+function fetchEntry (key: string): void {
   return new Promise((resolve, reject) => {
     AsyncStorage.getItem(key, (err, result) => {
       if (!err) resolve(JSON.parse(result))
-      else reject(err)
+      else      reject(err)
     })
   })
 }
@@ -21,7 +21,7 @@ function fetchAllEntries(dates: Array<string>) {
 export const fetchMealHistory = () => (dispatch, getState) => {
   const datesByWeek = _.groupBy((d) => {
     const date = moment(d)
-    return `${date.year()}-${date.week() - 1}`
+    return `${date.year()}-${date.week() -  1}`
   }, getState().database)
 
   _.each((dates, key) => {
@@ -29,13 +29,12 @@ export const fetchMealHistory = () => (dispatch, getState) => {
     .then((mealEntries) => {
       const nutritionEntries = _.map('nutrition', _.flatMap(_.values, mealEntries))
       const data = _.reduce((acc, nutrition) => {
-        return {
-          calories : nutrition.calories || 0,
-          fiber    : nutrition.fiber || 0,
-          fats     : nutrition.fats || 0,
-          protein  : nutrition.protein || 0,
-          carbs    : nutrition.carbs || 0,
-        }
+        acc.calories += nutrition.calories || 0
+        acc.fiber += nutrition.fiber || 0
+        acc.fats += nutrition.fats || 0
+        acc.protein += nutrition.protein || 0
+        acc.carbs += nutrition.carbs || 0
+        return acc
       }, {
         calories: 0,
         fiber: 0,

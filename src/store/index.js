@@ -14,7 +14,7 @@ export default createStore(
         actionTransformer: (action) => ({
           ...action,
           type: String(action.type),
-        }),
+        })
       }),
       persist,
       thunk,

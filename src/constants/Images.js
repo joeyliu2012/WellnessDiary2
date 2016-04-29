@@ -1,13 +1,9 @@
-import Triangle from '../images/icons/Triangle.png'
-import Settings from '../images/icons/Settings.png'
-import CirclePlus from '../images/icons/CirclePlus.png'
-import CloseIcon from '../images/icons/CloseIcon.png'
-import Check from '../images/icons/Check.png'
-
 export default {
-  'TopNavLink-active': Triangle,
-  'TopNav-settings': Settings,
-  CheckIcon: Check,
-  CirclePlus,
-  CloseIcon,
+  'TopNavLink-active': require('../images/icons/Triangle.png'),
+  'TopNav-settings': require('../images/icons/Settings.png'),
+  'CirclePlus': require('../images/icons/CirclePlus.png'),
+  'CloseIcon': require('../images/icons/CloseIcon.png'),
+  'CheckIcon': require('../images/icons/Check.png'),
+
+  'Fixture-meal-image': require('../images/fixtures/meal.jpg'),
 }
